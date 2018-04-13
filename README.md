@@ -26,7 +26,7 @@ Run the below command to install the packages found in requirements.txt:
 $ pip install -r requirements.txt
 ```
 
-Execure the script:
+Execute the script:
 
 ```
 $ python app.py
