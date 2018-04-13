@@ -2,7 +2,13 @@
 
 ## Usage
 
-First, create a virtual environment for the project:
+First, clone the repo:
+
+```
+$ git clone https://github.com/MatthewKosloski/student-information-system.git
+```
+
+Then, create a virtual environment for the project:
 
 ```
 $ virtualenv student_information_system
@@ -18,6 +24,12 @@ Run the below command to install the packages found in requirements.txt:
 
 ```
 $ pip install -r requirements.txt
+```
+
+Execure the script:
+
+```
+$ python app.py
 ```
 
 ## Resources
