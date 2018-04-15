@@ -1,5 +1,11 @@
 # Student Information System
 
+A command-line interface (CLI) that enables Students, Instructors, Registrars, and Administrators to perform various tasks.
+
+## About
+
+This CLI is written in Python and communicates with a remote MySQL database.  It has a MVC architecure aided by a simple Router class that enables controllers to communicate with each other and display their views.
+
 ## Usage
 
 First, clone the repo:

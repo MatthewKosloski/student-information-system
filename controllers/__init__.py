@@ -1,1 +1,2 @@
-from .student import StudentController
+from .main import MainController
+from .about import AboutController

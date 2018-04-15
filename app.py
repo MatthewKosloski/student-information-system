@@ -1,6 +1,20 @@
-from controllers import StudentController
+from router import Router
 
-name = input('Enter your name: ')
-student_controller = StudentController()
+def main():
+	router = Router()
 
-print(student_controller.get_student(name))
+	router.add('/', {
+		'controller': 'MainController', 
+		'action': 'index_action'
+	})
+
+	router.add('/about', {
+		'controller': 'AboutController', 
+		'action': 'index_action'
+	})
+
+	# Call 'index_action' on the MainController
+	router.dispatch('/')
+
+if __name__ == '__main__':
+	main()
