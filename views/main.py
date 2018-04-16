@@ -10,7 +10,7 @@ class MainView(BaseView):
 			'About'
 		])
 
-	def render(self):
+	def render(self, payload):
 		print()
 		print()
 		print('Student Information System')

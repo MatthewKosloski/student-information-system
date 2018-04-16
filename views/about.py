@@ -9,14 +9,15 @@ class AboutView(BaseView):
 			'Back'
 		])
 		
-	def render(self):
+	def render(self, payload):
 		print()
 		print()
 		print('About')
 		print()
 		print(self.get_choices_list())
 		print()
-		print('This is the about view.')
+		print('This Student Information System is made by Logan Miller,\n' +
+		'Matthew Kosloski, and Paul Barnes.\n\nView the source code:\n' +
+		'https://github.com/MatthewKosloski/student-information-system/')
 		print()
-
 		self.choice_prompt()

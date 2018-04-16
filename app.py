@@ -1,47 +1,23 @@
 from router import Router
-from models import Student
-from peewee import *
+# from models import Student, Section, Course, Registration
+# from peewee import *
 
 def main():
 	router = Router()
 
-	router.add('/', {
-		'controller': 'MainController', 
-		'action': 'index_action'
-	})
+	# Generic routes
+	router.add('/', {'controller': 'MainController'})
+	router.add('/about', {'controller': 'AboutController'})
+	router.add('/login', {'controller': 'LoginController'})
+	router.add('/change-password', {'controller': 'PasswordController'})
 
-	router.add('/about', {
-		'controller': 'AboutController', 
-		'action': 'index_action'
-	})
+	# Student routes
+	router.add('/student', {'controller': 'StudentController'})
+	router.add('/student/profile', {'controller': 'ProfileController'})
+	router.add('/student/grades', {'controller': 'GradesController'})
 
-	router.add('/login', {
-		'controller': 'LoginController', 
-		'action': 'index_action'
-	})
-
-	router.add('/student/home', {
-		'controller': 'StudentHomeController',
-		'action': 'index_action'
-	})
-
-	# Call 'index_action' on the MainController
+	# Call '__init__' on the MainController
 	router.dispatch('/')
-
-	# def get_account(model, username):
-	# 	try:
-	# 		query = (model
-	# 			.select()
-	# 			.where(getattr(model, 'username') == username)
-	# 			.get())
-
-	# 		return query
-	# 	except DoesNotExist:
-	# 		raise ValueError(('Either the username is incorrect' +
-	# 			' or the account doesn\'t exist!'))
-
-	# db_account = get_account(Student, 'mkosloski97')
-	# print(db_account.first_name)
 
 if __name__ == '__main__':
 	main()

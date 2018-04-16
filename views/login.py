@@ -1,4 +1,5 @@
 from .base import BaseView
+import getpass
 
 class LoginView(BaseView):
 
@@ -9,7 +10,7 @@ class LoginView(BaseView):
 	def set_login_status(self, status):
 		self.__is_valid_login = status
 		
-	def render(self):
+	def render(self, payload):
 		print()
 		print()
 		print('Login')
@@ -19,5 +20,5 @@ class LoginView(BaseView):
 
 			account = int(input('Account type (1 = Student, 2 = Instructor): '))
 			username = input('Username: ')
-			password = input('Password: ')
+			password = getpass.getpass()
 			self.get_controller().login(account, username, password)

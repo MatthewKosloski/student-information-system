@@ -5,10 +5,7 @@ import importlib
 	Inspired by: https://github.com/daveh/php-mvc/blob/master/Core/Router.php
 
 	A simple router class that translates
-	a route (e.g., '/about') into a controller
-	and action.  An action is just a method
-	on the controller that we wish to call upon
-	the initialization of the controller.
+	a route (e.g., '/about') into a controller.
 
 	Example:
 
@@ -17,16 +14,12 @@ import importlib
 
 	# Associate the AthleteController with the 
 	# /athletes route.  Call the controller's
-	# index_action when the route is dispatched.
-
-	router.add('/athletes', {
-		'controller': 'AthleteController', 
-		'action': 'index_action'
-	})
+	# __init__ method when the route is dispatched.
+	router.add('/athletes', {'controller': 'AthleteController'})
 
 	# Create a new instance of AthleteController
-	# and call it's index_action method. The 
-	# index_action method would more than likely
+	# and call it's __init__ method. The 
+	# __init__ method would more than likely
 	# render a view.
 	router.dispatch('/atheletes')
 
@@ -71,15 +64,13 @@ class Router():
 		if route in self.__routes:
 			current_route = self.__routes[route]
 			controller = current_route['controller'] # 'FooController'
-			action = current_route['action'] # 'index_action'
+			# action = current_route['action'] # 'index_action'
 
 			# from controllers import FooController
 			controllers_module = importlib.import_module('controllers')
 			controller_class = getattr(controllers_module, controller)
-			controller_obj = controller_class(current_route) # foo_controller = FooController()
-			controller_action = getattr(controller_obj, action) # foo_controller.index_action()
-
-			controller_action(payload)
+			controller_obj = controller_class(current_route, payload) # foo_controller = FooController(params, payload)
+			# controller_action = getattr(controller_obj, action) # foo_controller.index_action()
 
 
 			
