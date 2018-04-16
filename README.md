@@ -14,7 +14,7 @@ First, clone the repo:
 $ git clone https://github.com/MatthewKosloski/student-information-system.git
 ```
 
-Then, create a virtual environment for the project:
+Then, create a virtual environment for the project (make sure you're in the project's root directory):
 
 ```
 $ virtualenv student-information-system
