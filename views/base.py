@@ -5,6 +5,7 @@ class BaseView():
 	def __init__(self, controller):
 		self.__controller = controller
 		self.__choices = ['Exit']
+		self.__title = ''
 
 	'''
 		Get the controller for this view.
@@ -29,6 +30,23 @@ class BaseView():
 	'''
 	def set_choices(self, choices):
 		self.__choices += choices
+
+	'''
+		Sets the title of the view.
+
+		@param title {str}
+	'''
+	def set_title(self, title):
+		self.__title = title
+
+	'''
+		Print the title to the view.
+	'''
+	def print_title(self):
+		print()
+		print()
+		print(self.__title)
+		print()
 
 	'''
 		Returns an ordered list of the choices.
