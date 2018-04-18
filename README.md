@@ -52,13 +52,13 @@ From the desktop, run the following command to create a virtual environment in t
 $ py -m virtualenv student-information-system
 ```
 
-Next, activate the virtual environment:
+Next, change directory to the project folder and activate the virtual environment:
 
 ```
 $ source Scripts/activate
 ```
 
-Then, change directory to the project folder and install the requirements:
+Then, install the requirements:
 
 ```
 $ py -m pip install -r requirements.txt
