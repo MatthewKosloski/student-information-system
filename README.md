@@ -49,7 +49,7 @@ $ git clone https://github.com/MatthewKosloski/student-information-system
 From the desktop, run the following command to create a virtual environment in the project folder:
 
 ```
-$ virtualenv student-information-system
+$ py -m virtualenv student-information-system
 ```
 
 Next, activate the virtual environment:
