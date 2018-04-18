@@ -1,6 +1,6 @@
 # Student Information System
 
-A command-line interface (CLI) that enables Students and Instructors to perform various tasks.
+A command-line interface (CLI) that enables Students and Instructors to perform various tasks..
 
 ## About
 
