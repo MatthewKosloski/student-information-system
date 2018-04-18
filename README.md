@@ -1,6 +1,6 @@
 # Student Information System
 
-A command-line interface (CLI) that enables Students, Instructors, Registrars, and Administrators to perform various tasks.
+A command-line interface (CLI) that enables Students and Instructors to perform various tasks.
 
 ## About
 
@@ -10,7 +10,7 @@ This CLI is written in Python and communicates with a remote MySQL database. It 
 
 ```
 CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
-```
+```  
 
 ## Usage
 
