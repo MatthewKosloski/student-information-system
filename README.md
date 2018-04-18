@@ -1,6 +1,6 @@
 # Student Information System
 
-A command-line interface (CLI) that enables Students and Instructors to perform various tasks..
+A command-line interface (CLI) that enables Students and Instructors to perform various tasks.
 
 ## About
 
@@ -79,6 +79,28 @@ If you install a package via Pip, please save it to requirements.txt like so:
 ```
 $ pip freeze > requirements.txt
 ```
+
+## Committing changes to your branch
+
+Once you're finished making changes in your branch, first add them to the staging area:
+
+```
+$ git add .
+```
+
+Next, commit them with a helpful message indicating your changes:
+
+```
+$ git commit -m "made changes"
+```
+
+Then, push changes to your branch:
+
+```
+$ git push origin <branch name>
+``` 
+
+I'll then make a pull request to merge your changes to the master branch.
 
 ## Resources
 
