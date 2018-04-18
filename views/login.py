@@ -20,5 +20,5 @@ class LoginView(BaseView):
 
 			account = int(input('Account type (1 = Student, 2 = Instructor): '))
 			username = input('Username: ')
-			password = getpass.getpass()
+			password = input('Password: ')
 			self.get_controller().login(account, username, password)
