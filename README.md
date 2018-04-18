@@ -46,6 +46,16 @@ Execute the script:
 $ python app.py
 ```
 
+## Alternate Usage
+
+1. cd desktop
+2. git clone https://github.com/MatthewKosloski/student-information-system
+3. virtualenv student-information-system
+4. cd student-information-system
+5. py -m pip install -r requirements.txt
+6. py app.py
+
+
 ## Installing Packages
 
 After you install a package via Pip, please save it to requirements.txt like so:
