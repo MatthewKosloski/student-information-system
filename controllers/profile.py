@@ -5,8 +5,8 @@ from models import Student
 
 class ProfileController(BaseController):
 
-	def __init__(self, route, payload):
-		super().__init__(route, payload)
+	def __init__(self, router, payload):
+		super().__init__(router, payload)
 
 		self.__view = ProfileView(self)
 		self.__view.render(self.get_profile())

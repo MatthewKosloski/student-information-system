@@ -4,8 +4,8 @@ from .base import BaseController
 
 class GradesController(BaseController):
 
-	def __init__(self, route, payload):
-		super().__init__(route, payload)
+	def __init__(self, router, payload):
+		super().__init__(router, payload)
 
 		self.__view = GradesView(self)
 		self.__view.render(self.get_student_grades())

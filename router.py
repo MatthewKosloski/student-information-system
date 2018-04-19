@@ -96,7 +96,7 @@ class Router():
 			controller_class = getattr(controllers_module, controller)
 
 			self.__log.append({'route': route, 'payload': payload})
-			self.__active_controller = controller_class(current_route, payload)
+			self.__active_controller = controller_class(current_route['router'], payload)
 			
 
 

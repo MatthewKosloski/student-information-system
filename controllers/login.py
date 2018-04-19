@@ -7,8 +7,8 @@ from .base import BaseController
 
 class LoginController(BaseController):
 
-	def __init__(self, route, payload):
-		super().__init__(route, payload)
+	def __init__(self, router, payload):
+		super().__init__(router, payload)
 
 		self.__view = LoginView(self)
 		self.__view.render(payload)
