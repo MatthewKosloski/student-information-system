@@ -6,15 +6,16 @@ def main():
 	router = Router()
 
 	# Generic routes
-	router.add('/', {'controller': 'MainController'})
-	router.add('/about', {'controller': 'AboutController'})
-	router.add('/login', {'controller': 'LoginController'})
-	router.add('/change-password', {'controller': 'PasswordController'})
+	router.add('/', 'MainController')
+	router.add('/about', 'AboutController')
+	router.add('/login', 'LoginController')
+	router.add('/change-password', 'PasswordController')
+	router.add('/help', 'HelpController')
 
 	# Student routes
-	router.add('/student', {'controller': 'StudentController'})
-	router.add('/student/profile', {'controller': 'ProfileController'})
-	router.add('/student/grades', {'controller': 'GradesController'})
+	router.add('/student', 'StudentController')
+	router.add('/student/profile', 'ProfileController')
+	router.add('/student/grades', 'GradesController')
 
 	# Call '__init__' on the MainController
 	router.dispatch('/')
