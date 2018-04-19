@@ -5,3 +5,4 @@ from .student import StudentView
 from .profile import ProfileView
 from .password import PasswordView
 from .grades import GradesView
+from .schedule import ScheduleView

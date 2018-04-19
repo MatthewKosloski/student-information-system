@@ -5,6 +5,7 @@ from routes import (
 	STUDENT_PROFILE_ROUTE, 
 	CHANGE_PASSWORD_ROUTE, 
 	STUDENT_GRADES_ROUTE, 
+	STUDENT_SCHEDULE_ROUTE,
 	HOME_ROUTE
 )
 
@@ -60,6 +61,7 @@ class StudentController(BaseController):
 		elif choice == 3:
 			self.dispatch(STUDENT_GRADES_ROUTE, student_id)
 		elif choice == 4: # Logout
-			self.dispatch(HOME_ROUTE)
-
+			self.dispatch(STUDENT_SCHEDULE_ROUTE)
+		elif choice == 5:
+			self.dispatch('/')
 

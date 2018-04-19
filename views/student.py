@@ -9,7 +9,7 @@ class StudentView(BaseView):
 			'View Profile',
 			'Change Password',
 			'View Grades',
-			# 'View Class Schedule (incomplete)',
+			'View Class Schedule (incomplete)',
 			# 'Search for Sections (incomplete)',
 			# 'Register for Sections (incomplete)',
 			'Logout'

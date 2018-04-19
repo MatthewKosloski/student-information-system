@@ -4,12 +4,15 @@ class BaseController():
 		self.__params = params
 		self.__payload = payload
 
-	# Syntactic sugar for self.__params['router'].dispatch
+	'''
+		Allows us to use router.dispatch() from
+		the controller.
+
+		@param route {str}
+		@param payload {dict}
+	'''
 	def dispatch(self, route, payload = {}):
 		return self.__params['router'].dispatch(route, payload)
-
-	def get_router_log(self):
-		return self.__params['router'].get_log()
 
 	'''
 		Calls dispatch with the previously used route
@@ -22,5 +25,11 @@ class BaseController():
 
 		self.__params['router'].dispatch(last_route, last_payload) 
 
+	'''
+		Returns the payload provided
+		to the controller.
+
+		@return {dict}
+	'''
 	def get_payload(self):
 		return self.__payload

@@ -1,12 +1,12 @@
-from views import AboutView
+from views import ScheduleView
 from .base import BaseController
 
-class AboutController(BaseController):
+class ScheduleController(BaseController):
 
 	def __init__(self, params, payload):
 		super().__init__(params, payload)
 
-		self.__view = AboutView(self)
+		self.__view = ScheduleView(self)
 		self.__view.render(payload)
 
 	'''

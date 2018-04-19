@@ -6,7 +6,8 @@ from routes import (
 	CHANGE_PASSWORD_ROUTE,
 	STUDENT_ROUTE,
 	STUDENT_PROFILE_ROUTE,
-	STUDENT_GRADES_ROUTE
+	STUDENT_GRADES_ROUTE,
+	STUDENT_SCHEDULE_ROUTE
 )
 
 def main():
@@ -22,6 +23,7 @@ def main():
 	router.add(STUDENT_ROUTE, 'StudentController')
 	router.add(STUDENT_PROFILE_ROUTE, 'ProfileController')
 	router.add(STUDENT_GRADES_ROUTE, 'GradesController')
+	router.add(STUDENT_SCHEDULE_ROUTE, 'ScheduleController')
 
 	# Call '__init__' on the MainController
 	router.dispatch(HOME_ROUTE)
