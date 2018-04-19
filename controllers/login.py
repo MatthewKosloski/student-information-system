@@ -1,6 +1,7 @@
 from peewee import *
 from views import LoginView
 from models import Student
+from routes import STUDENT_ROUTE, HOME_ROUTE
 from .base import BaseController
 
 
@@ -52,7 +53,7 @@ class LoginController(BaseController):
 
 				if db_account.password == password:
 					self.__view.set_login_status(True)
-					self.dispatch('/student', db_account.id)
+					self.dispatch(STUDENT_ROUTE, db_account.id)
 				else:
 					self.__view.print_message('Incorrect password!')
 
@@ -60,6 +61,6 @@ class LoginController(BaseController):
 				self.__view.print_message(e)
 		elif account == 2: # instructor account
 			# Not implemented yet. Temporary redirect
-			self.dispatch('/')
+			self.dispatch(HOME_ROUTE)
 
 

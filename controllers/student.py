@@ -1,6 +1,12 @@
 from .base import BaseController
 from views import StudentView
 from models import Student
+from routes import (
+	STUDENT_PROFILE_ROUTE, 
+	CHANGE_PASSWORD_ROUTE, 
+	STUDENT_GRADES_ROUTE, 
+	HOME_ROUTE
+)
 
 class StudentController(BaseController):
 
@@ -47,13 +53,13 @@ class StudentController(BaseController):
 		student_id = self.get_payload()
 		if choice == 1: # View Profile
 			# specify type so we can reuse profile module
-			self.dispatch('/student/profile', {'type': 'student', 'id': student_id})
+			self.dispatch(STUDENT_PROFILE_ROUTE, {'type': 'student', 'id': student_id})
 		elif choice == 2: # Change Password
 		# specify type so we can reuse password module
-			self.dispatch('/change-password', {'type': 'student', 'id': student_id})
+			self.dispatch(CHANGE_PASSWORD_ROUTE, {'type': 'student', 'id': student_id})
 		elif choice == 3:
-			self.dispatch('/student/grades', student_id)
+			self.dispatch(STUDENT_GRADES_ROUTE, student_id)
 		elif choice == 4: # Logout
-			self.dispatch('/')
+			self.dispatch(HOME_ROUTE)
 
 

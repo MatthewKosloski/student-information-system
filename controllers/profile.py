@@ -1,5 +1,6 @@
 from .base import BaseController
 from views import ProfileView
+from routes import HOME_ROUTE
 from models import Student
 
 class ProfileController(BaseController):
@@ -59,6 +60,6 @@ class ProfileController(BaseController):
 		if choice == 1:
 			self.go_back()
 		else:
-			self.dispatch('/')
+			self.dispatch(HOME_ROUTE)
 
 
