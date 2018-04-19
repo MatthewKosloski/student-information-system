@@ -96,7 +96,7 @@ class PasswordController(BaseController):
 					self.__view.print_message('Password has been changed.')
 				else:
 					self.__view.print_message('Password has NOT been changed.')
-				self.__password_has_changed = True
+				self.__view.set_password_status(True)
 				self.go_back()
 			else:
 				self.__view.print_message('Old password does not ' + 
