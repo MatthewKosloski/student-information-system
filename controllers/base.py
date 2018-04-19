@@ -1,7 +1,7 @@
 class BaseController():
 
-	def __init__(self, params, payload):
-		self.__params = params
+	def __init__(self, route, payload):
+		self.__route = route
 		self.__payload = payload
 
 	'''
@@ -12,18 +12,18 @@ class BaseController():
 		@param payload {dict}
 	'''
 	def dispatch(self, route, payload = {}):
-		return self.__params['router'].dispatch(route, payload)
+		return self.__route['router'].dispatch(route, payload)
 
 	'''
 		Calls dispatch with the previously used route
 		and payload.
 	'''
 	def go_back(self):
-		last_router_log_item = self.__params['router'].get_last_log_item()
+		last_router_log_item = self.__route['router'].get_last_log_item()
 		last_route = last_router_log_item['route']
 		last_payload = last_router_log_item['payload']
 
-		self.__params['router'].dispatch(last_route, last_payload) 
+		self.__route['router'].dispatch(last_route, last_payload) 
 
 	'''
 		Returns the payload provided

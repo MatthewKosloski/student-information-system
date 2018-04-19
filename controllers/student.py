@@ -11,8 +11,8 @@ from routes import (
 
 class StudentController(BaseController):
 
-	def __init__(self, params, payload):
-		super().__init__(params, payload)
+	def __init__(self, route, payload):
+		super().__init__(route, payload)
 
 		self.__view = StudentView(self)
 

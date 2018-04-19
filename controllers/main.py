@@ -4,8 +4,8 @@ from .base import BaseController
 
 class MainController(BaseController):
 
-	def __init__(self, params, payload):
-		super().__init__(params, payload)
+	def __init__(self, route, payload):
+		super().__init__(route, payload)
 
 		self.__view = MainView(self)
 		self.__view.render(payload)
