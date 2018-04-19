@@ -13,11 +13,10 @@ class PasswordView(BaseView):
 	def render(self, payload):
 		self.print_title('Change Password')
 
-		print('Password_has_changed:', self.__password_has_changed)
 		while not self.__password_has_changed:
 
-			old = getpass.getpass('Old Password:')
-			new = getpass.getpass('New Password:')
-			new_confirmed = getpass.getpass('Confirm New Password:')
+			old = print('Old Password: ')
+			new = print('New Password: ')
+			new_confirmed = print('Confirm New Password: ')
 
 			self.get_controller().change_password(old, new, new_confirmed)
