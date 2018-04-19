@@ -63,19 +63,6 @@ class PasswordController(BaseController):
 		return updated_rows
 
 	'''
-		Determines which view to display when the 
-		user wants to go back to their home view. 
-		This is based on the "type" payload value.
-	'''
-	def go_back(self):
-		account_type = self.get_payload()['type']
-		account_id = self.get_payload()['id']
-		if account_type == 'student':
-			self.dispatch('/student', account_id)
-		else:
-			self.dispatch('/')
-
-	'''
 		Take input from the view and try to update
 		the user's password. Checks if the user entered
 		the new password correct two times. Checks if

@@ -29,6 +29,7 @@ class Router():
 	def __init__(self):
 		self.__routes = {}
 		self.__active_controller = None
+		self.__log = []
 
 	'''
 		Create a new route
@@ -60,6 +61,23 @@ class Router():
 			del self.__routes[route]
 
 	'''
+		Return dispatch history.
+
+		@return {list}
+	'''
+	def get_log(self):
+		return self.__log
+
+	'''
+		Return the last dispatched item. It
+		is -2 because -1 is the current item.
+
+		@return {dict}
+	'''
+	def get_last_log_item(self):
+		return self.__log[-2]
+
+	'''
 		Instantiate a new instance of
 		the controller associated with
 		a route.
@@ -77,8 +95,8 @@ class Router():
 			controllers_module = importlib.import_module('controllers')
 			controller_class = getattr(controllers_module, controller)
 
+			self.__log.append({'route': route, 'payload': payload})
 			self.__active_controller = controller_class(current_route, payload)
 			
 
 
-			

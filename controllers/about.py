@@ -17,5 +17,6 @@ class AboutController(BaseController):
 		the view in the ordered list menu.
 	'''
 	def on_choice_selection(self, choice):
+		print(self.get_router_log())
 		if choice == 1:
-			self.dispatch('/')
+			self.go_back()

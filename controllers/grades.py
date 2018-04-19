@@ -95,6 +95,6 @@ class GradesController(BaseController):
 	def on_choice_selection(self, choice):
 		student_id = self.get_payload()
 		if choice == 1:
-			self.dispatch('/student', student_id)
+			self.go_back()
 
 
