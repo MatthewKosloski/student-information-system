@@ -15,8 +15,8 @@ class PasswordView(BaseView):
 
 		while not self.__password_has_changed:
 
-			old = print('Old Password: ')
-			new = print('New Password: ')
-			new_confirmed = print('Confirm New Password: ')
+			old = input('Old Password: ')
+			new = input('New Password: ')
+			new_confirmed = input('Confirm New Password: ')
 
 			self.get_controller().change_password(old, new, new_confirmed)
