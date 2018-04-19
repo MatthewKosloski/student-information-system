@@ -11,11 +11,9 @@ class PasswordView(BaseView):
 		self.__password_has_changed = status
 		
 	def render(self, payload):
-		print()
-		print()
-		print('Change Password')
-		print()
+		self.print_title('Change Password')
 
+		print('Password_has_changed:', self.__password_has_changed)
 		while not self.__password_has_changed:
 
 			old = getpass.getpass('Old Password:')

@@ -11,10 +11,8 @@ class MainView(BaseView):
 		])
 
 	def render(self, payload):
-		print()
-		print()
-		print('Student Information System')
-		print()
+		self.print_title('Student Information System')
+		
 		print(self.get_choices_list())
 		print()
 

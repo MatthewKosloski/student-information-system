@@ -5,7 +5,6 @@ class BaseView():
 	def __init__(self, controller):
 		self.__controller = controller
 		self.__choices = ['Exit']
-		self.__title = ''
 
 	'''
 		Get the controller for this view.
@@ -32,21 +31,20 @@ class BaseView():
 		self.__choices += choices
 
 	'''
-		Sets the title of the view.
+		Print the title and optional subtitle
+		to the view.
 
 		@param title {str}
+		@param subtitle {str}
 	'''
-	def set_title(self, title):
-		self.__title = title
-
-	'''
-		Print the title to the view.
-	'''
-	def print_title(self):
+	def print_title(self, title, subtitle = None):
 		print()
 		print()
-		print(self.__title)
+		print(title)
 		print()
+		if subtitle:
+			print(subtitle)
+			print()
 
 	'''
 		Returns an ordered list of the choices.
@@ -64,7 +62,6 @@ class BaseView():
 		@param choice {int}
 	'''
 	def handle_choice(self, choice):
-		# We exit on 0, so controller doesn't handle it
 		if choice != 0:
 			self.__controller.on_choice_selection(int(choice))
 

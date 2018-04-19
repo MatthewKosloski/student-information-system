@@ -10,10 +10,8 @@ class ProfileView(BaseView):
 		])
 		
 	def render(self, payload):
-		print()
-		print()
-		print(f'Profile of {payload["full_name"]}')
-		print()
+		self.print_title(f'Profile of {payload["full_name"]}')
+		
 		print('ID:', payload['id'])
 		print('Username:', payload['username'])
 		print('First Name:', payload['first_name'])

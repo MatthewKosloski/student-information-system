@@ -16,9 +16,8 @@ class StudentView(BaseView):
 		])
 		
 	def render(self, payload):
-		print()
-		print(f'Welcome, {payload["username"]} ({payload["full_name"]})!')
-		print()
+		self.print_title(f'Welcome, {payload["username"]} ({payload["full_name"]})!')
+		
 		print(self.get_choices_list())
 		print()
 		self.choice_prompt()

@@ -19,5 +19,3 @@ class AboutController(BaseController):
 	def on_choice_selection(self, choice):
 		if choice == 1:
 			self.dispatch('/')
-
-
