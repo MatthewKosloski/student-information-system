@@ -6,8 +6,6 @@ class GradesView(BaseView):
 	def __init__(self, controller):
 		super().__init__(controller)
 
-		self.set_title('Student Grades')
-
 		self.set_choices([
 			'Back'
 		])
@@ -24,7 +22,7 @@ class GradesView(BaseView):
 		return table
 
 	def render(self, payload):
-		self.print_title()
+		self.print_title('Student Grades')
 
 		print(self.get_grades_table(payload))
 		print()

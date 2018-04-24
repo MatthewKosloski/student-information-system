@@ -11,10 +11,7 @@ class LoginView(BaseView):
 		self.__is_valid_login = status
 		
 	def render(self, payload):
-		print()
-		print()
-		print('Login')
-		print()
+		self.print_title('Login')
 
 		while not self.__is_valid_login:
 

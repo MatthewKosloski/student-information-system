@@ -1,11 +1,12 @@
 from .base import BaseController
 from views import ProfileView
+from routes import HOME_ROUTE
 from models import Student
 
 class ProfileController(BaseController):
 
-	def __init__(self, params, payload):
-		super().__init__(params, payload)
+	def __init__(self, router, payload):
+		super().__init__(router, payload)
 
 		self.__view = ProfileView(self)
 		self.__view.render(self.get_profile())
@@ -49,19 +50,6 @@ class ProfileController(BaseController):
 			self.__view.print_message('Account does not exist.')
 
 	'''
-		Determines which view to display when the 
-		user wants to go back to their home view. 
-		This is based on the "type" payload value.
-	'''
-	def go_back(self):
-		account_type = self.get_payload()['type']
-		account_id = self.get_payload()['id']
-		if account_type == 'student':
-			self.dispatch('/student', account_id)
-		else:
-			self.dispatch('/')
-
-	'''
 		Handle the user's choice and redirect
 		them to the appropriate view.
 		
@@ -72,6 +60,6 @@ class ProfileController(BaseController):
 		if choice == 1:
 			self.go_back()
 		else:
-			self.dispatch('/')
+			self.dispatch(HOME_ROUTE)
 
 

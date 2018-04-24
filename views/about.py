@@ -10,10 +10,8 @@ class AboutView(BaseView):
 		])
 		
 	def render(self, payload):
-		print()
-		print()
-		print('About')
-		print()
+		self.print_title('About')
+		
 		print(self.get_choices_list())
 		print()
 		print('This Student Information System is made by Logan Miller,\n' +

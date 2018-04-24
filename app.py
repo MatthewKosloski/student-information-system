@@ -1,23 +1,32 @@
 from router import Router
-# from models import Student, Section, Course, Registration
-# from peewee import *
+from routes import (
+	HOME_ROUTE,
+	ABOUT_ROUTE,
+	LOGIN_ROUTE,
+	CHANGE_PASSWORD_ROUTE,
+	STUDENT_ROUTE,
+	STUDENT_PROFILE_ROUTE,
+	STUDENT_GRADES_ROUTE,
+	STUDENT_SCHEDULE_ROUTE
+)
 
 def main():
 	router = Router()
 
 	# Generic routes
-	router.add('/', {'controller': 'MainController'})
-	router.add('/about', {'controller': 'AboutController'})
-	router.add('/login', {'controller': 'LoginController'})
-	router.add('/change-password', {'controller': 'PasswordController'})
+	router.add(HOME_ROUTE, 'MainController')
+	router.add(ABOUT_ROUTE, 'AboutController')
+	router.add(LOGIN_ROUTE, 'LoginController')
+	router.add(CHANGE_PASSWORD_ROUTE, 'PasswordController')
 
 	# Student routes
-	router.add('/student', {'controller': 'StudentController'})
-	router.add('/student/profile', {'controller': 'ProfileController'})
-	router.add('/student/grades', {'controller': 'GradesController'})
+	router.add(STUDENT_ROUTE, 'StudentController')
+	router.add(STUDENT_PROFILE_ROUTE, 'ProfileController')
+	router.add(STUDENT_GRADES_ROUTE, 'GradesController')
+	router.add(STUDENT_SCHEDULE_ROUTE, 'ScheduleController')
 
 	# Call '__init__' on the MainController
-	router.dispatch('/')
+	router.dispatch(HOME_ROUTE)
 
 if __name__ == '__main__':
 	main()

@@ -4,8 +4,8 @@ from .base import BaseController
 
 class GradesController(BaseController):
 
-	def __init__(self, params, payload):
-		super().__init__(params, payload)
+	def __init__(self, router, payload):
+		super().__init__(router, payload)
 
 		self.__view = GradesView(self)
 		self.__view.render(self.get_student_grades())
@@ -95,6 +95,6 @@ class GradesController(BaseController):
 	def on_choice_selection(self, choice):
 		student_id = self.get_payload()
 		if choice == 1:
-			self.dispatch('/student', student_id)
+			self.go_back()
 
 

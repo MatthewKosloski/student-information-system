@@ -6,13 +6,7 @@ A command-line interface (CLI) that enables Students and Instructors to perform 
 
 This CLI is written in Python and communicates with a remote MySQL database. It has a MVC architecure aided by a simple [Router](https://github.com/MatthewKosloski/student-information-system/blob/master/router.py) that enables controllers to communicate with each other and display their views.
 
-## Creating MySQL user
-
-```
-CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
-```  
-
-## Usage
+## Usage (Mac)
 
 First, clone the repo:
 
@@ -30,8 +24,6 @@ Start up the virtual environment (make sure you're in the project's root directo
 
 ```
 $ source bin/activate
-OR
-$ source Scripts/activate
 ```
 
 Run the below command to install the packages found in requirements.txt:
@@ -46,23 +38,69 @@ Execute the script:
 $ python app.py
 ```
 
-## Alternate Usage
+## Usage (Windows)
 
-1. cd desktop
-2. git clone https://github.com/MatthewKosloski/student-information-system
-3. virtualenv student-information-system
-4. cd student-information-system
-5. py -m pip install -r requirements.txt
-6. py app.py
+First, clone the repo to the desktop:
+
+```
+$ git clone https://github.com/MatthewKosloski/student-information-system
+```
+
+From the desktop, run the following command to create a virtual environment in the project folder:
+
+```
+$ py -m virtualenv student-information-system
+```
+
+Next, change directory to the project folder and activate the virtual environment:
+
+```
+$ source Scripts/activate
+```
+
+Then, install the requirements:
+
+```
+$ py -m pip install -r requirements.txt
+```
+
+
+Finally, run the app:
+
+```
+$ py app.py
+```
 
 
 ## Installing Packages
 
-After you install a package via Pip, please save it to requirements.txt like so:
+If you install a package via Pip, please save it to requirements.txt like so:
 
 ```
 $ pip freeze > requirements.txt
 ```
+
+## Committing changes to your branch
+
+Once you're finished making changes in your branch, first add them to the staging area:
+
+```
+$ git add .
+```
+
+Next, commit them with a helpful message indicating your changes:
+
+```
+$ git commit -m "made changes"
+```
+
+Then, push changes to your branch:
+
+```
+$ git push origin <branch name>
+``` 
+
+I'll then make a pull request to merge your changes to the master branch.
 
 ## Resources
 

@@ -4,8 +4,8 @@ from models import Student
 
 class PasswordController(BaseController):
 
-	def __init__(self, params, payload):
-		super().__init__(params, payload)
+	def __init__(self, router, payload):
+		super().__init__(router, payload)
 
 		self.__view = PasswordView(self)
 		self.__view.render(payload)
@@ -63,19 +63,6 @@ class PasswordController(BaseController):
 		return updated_rows
 
 	'''
-		Determines which view to display when the 
-		user wants to go back to their home view. 
-		This is based on the "type" payload value.
-	'''
-	def go_back(self):
-		account_type = self.get_payload()['type']
-		account_id = self.get_payload()['id']
-		if account_type == 'student':
-			self.dispatch('/student', account_id)
-		else:
-			self.dispatch('/')
-
-	'''
 		Take input from the view and try to update
 		the user's password. Checks if the user entered
 		the new password correct two times. Checks if
@@ -96,7 +83,7 @@ class PasswordController(BaseController):
 					self.__view.print_message('Password has been changed.')
 				else:
 					self.__view.print_message('Password has NOT been changed.')
-				self.__password_has_changed = True
+				self.__view.set_password_status(True)
 				self.go_back()
 			else:
 				self.__view.print_message('Old password does not ' + 
