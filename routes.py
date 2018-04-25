@@ -9,3 +9,7 @@ STUDENT_ROUTE = '/student'
 STUDENT_PROFILE_ROUTE = '/student/profile'
 STUDENT_GRADES_ROUTE = '/student/grades'
 STUDENT_SCHEDULE_ROUTE = '/student/schedule'
+
+# Instructor routes
+INSTRUCTOR_ROUTE = '/instructor'
+INSTRUCTOR_STUDENT_GRADES_ROUTE ='/instructor/student/grades'

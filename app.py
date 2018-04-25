@@ -1,14 +1,5 @@
 from router import Router
-from routes import (
-	HOME_ROUTE,
-	ABOUT_ROUTE,
-	LOGIN_ROUTE,
-	CHANGE_PASSWORD_ROUTE,
-	STUDENT_ROUTE,
-	STUDENT_PROFILE_ROUTE,
-	STUDENT_GRADES_ROUTE,
-	STUDENT_SCHEDULE_ROUTE
-)
+from routes import *
 
 def main():
 	router = Router()
@@ -24,6 +15,11 @@ def main():
 	router.add(STUDENT_PROFILE_ROUTE, 'ProfileController')
 	router.add(STUDENT_GRADES_ROUTE, 'GradesController')
 	router.add(STUDENT_SCHEDULE_ROUTE, 'ScheduleController')
+
+
+	# Instructor routes
+	router.add(INSTRUCTOR_ROUTE, 'InstructorController')
+	router.add(INSTRUCTOR_STUDENT_GRADES_ROUTE, 'InstructorStudentGradesController')
 
 	# Call '__init__' on the MainController
 	router.dispatch(HOME_ROUTE)
