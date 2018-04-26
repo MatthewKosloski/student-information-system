@@ -65,6 +65,46 @@ class BaseView():
 		if choice != 0:
 			self.__controller.on_choice_selection(int(choice))
 
+
+	'''
+		Keeps prompting the user for
+		a string if no string is provided.
+
+		@param input_str {str} Text to be prompted to user
+		@param err_str {str} Text printed if no string is provided
+		@return val {str} String received from user
+	'''
+	def get_non_empty_string(self, input_str, err_str):
+		while True:
+			val = input(input_str)
+
+			if not val:
+				print(err_str)
+				continue
+			else:
+				break
+		return val
+
+	'''
+		Keeps prompting the user to
+		enter an integer between a given range.
+
+		@param input_str {str} Text to be prompted to user
+		@param range {tuple} Tuple of two integers, where the
+		first is the min and second is the max e.g., (1, 2)
+		@return val {int} Int received from user
+	'''
+	def get_int_range(self, input_str, range):
+		# init val to the integer less than the min
+		val = range[0] - 1
+
+		while not (val >= range[0] and val <= range[1]):
+			try:
+				val = int(input(input_str))
+			except ValueError as e:
+				print(f'Please enter an integer between {range[0]} and {range[1]}.')
+		return val
+
 	'''
 		Asks the user for a valid integer
 		that corresponds to the index of an
@@ -77,12 +117,7 @@ class BaseView():
 		minimum = 0
 		maximum = len(self.__choices) - 1
 
-		while not (choice >= minimum and choice <= maximum):
-			try:
-				choice = int(input('> '))
-			except ValueError as e:
-				print(f'Please enter an integer between {minimum} and {maximum}.')
-
+		choice = self.get_int_range('> ', (minimum, maximum))
 		self.handle_choice(choice)
 
 	'''
