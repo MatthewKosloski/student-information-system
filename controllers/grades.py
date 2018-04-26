@@ -19,7 +19,7 @@ class GradesController(BaseController):
 		from the course table.
 	'''
 	def get_student_grades(self):
-		student_id = self.get_payload()
+		student_id = self.get_payload()['id']
 		query = (Registration
 			.select(Registration.letter_grade,
 				Registration.percent_grade, 
