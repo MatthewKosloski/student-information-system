@@ -1,5 +1,5 @@
 from .base import BaseView
-from beautifultable import BeautifulTable
+from table import Table
 
 class GradesView(BaseView):
 
@@ -11,14 +11,15 @@ class GradesView(BaseView):
 		])
 
 	def get_grades_table(self, grades):
-		table = BeautifulTable()
-		table.column_headers = ['Course', 'Grade', 'Percent']
-		table.column_alignments['Course'] = BeautifulTable.ALIGN_LEFT
-		table.column_alignments['Grade'] = BeautifulTable.ALIGN_LEFT
-		table.column_alignments['Percent'] = BeautifulTable.ALIGN_LEFT
+		table = Table(['Course', 'Grade', 'Percent'])
 
 		for item in grades:
-			table.append_row([item['course'], item['grade'], item['percent']])
+			table.add_row([
+				item['course'], 
+				item['grade'], 
+				item['percent']
+			])
+
 		return table
 
 	def render(self, payload):
