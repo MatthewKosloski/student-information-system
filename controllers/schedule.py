@@ -51,10 +51,8 @@ class ScheduleController(BaseController):
 		for item in schedule:
 			simplified_schedule.append({
 				'meet_day': self.get_meet_day(item['meet_day']),
-				'meet_time_start': self.get_hour_minute(item['meet_time_start']),
-				'meet_time_end': self.get_hour_minute(item['meet_time_end']),
-				'start_date': self.get_year_month_day(item['start_date']),
-				'end_date': self.get_year_month_day(item['end_date']),
+				'meet_time': self.get_meet_time(item['meet_time_start'], item['meet_time_end']),
+				'meet_date': self.get_meet_date(item['start_date'], item['end_date']),
 				'section_type': self.get_section_type(item['type']),
 				'course': f'{item["name"]} {item["title"]}',
 				'instructor': f'{item["first_name"]} {item["last_name"]}',
@@ -62,6 +60,24 @@ class ScheduleController(BaseController):
 				'meet_location': item['meet_location']
 			})
 		return simplified_schedule
+
+	def get_meet_time(self, meet_time_start, meet_time_end):
+		start = self.get_hour_minute(meet_time_start)
+		end = self.get_hour_minute(meet_time_end)
+
+		start_formatted = f'{start[0]}:{start[1]}'
+		end_formatted = f'{end[0]}:{end[1]}'
+
+		return f'{start_formatted}-{end_formatted}'
+
+	def get_meet_date(self, start_date, end_date):
+		start = self.get_year_month_day(start_date)
+		end = self.get_year_month_day(end_date)
+
+		start_formatted = f'{start[0]}/{start[1]}/{start[2]}'
+		end_formated = f'{end[0]}/{end[1]}/{end[2]}'
+
+		return f'{start_formatted}-{end_formated}'
 
 	def get_meet_day(self, meet_day_int):
 		meet_days = ['', 'M', 'T', 'W', 'R', 'F', 'MWF', 'TR']

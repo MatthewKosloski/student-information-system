@@ -22,6 +22,7 @@ class ScheduleView(BaseView):
 			'Meet Date',
 			'Section Type'
 		]
+
 		table.column_alignments['Course'] = BeautifulTable.ALIGN_LEFT
 		table.column_alignments['Section Number'] = BeautifulTable.ALIGN_LEFT
 		table.column_alignments['Instructor'] = BeautifulTable.ALIGN_LEFT
