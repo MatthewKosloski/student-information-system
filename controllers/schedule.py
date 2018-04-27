@@ -1,7 +1,8 @@
 from .base import BaseController
 from views import ScheduleView
 from routes import HOME_ROUTE
-from models import Student, Registration, Course, Section, Instructor
+from utils import *
+from models import *
 
 class ScheduleController(BaseController):
 
@@ -23,6 +24,13 @@ class ScheduleController(BaseController):
 		if account_type == 'student':
 			return Student
 
+	'''
+		Queries the database and returns
+		information pertaining to the student's
+		schedule.
+
+		@return {list}
+	'''
 	def get_student_schedule(self):
 		student_id = self.get_payload()['id']
 		query = (Registration
@@ -44,52 +52,103 @@ class ScheduleController(BaseController):
 			.where(Registration.student_id == student_id)
 			.dicts())
 
-		return self.simplify_student_schedule(query)
+		return self.process_student_schedule_query(query)
 
-	def simplify_student_schedule(self, schedule):
-		simplified_schedule = []
+	'''
+		Refines the student schedule results from
+		the database.
+
+		@param schedule {dict}
+		@return processed_schedule {list}
+	'''
+	def process_student_schedule_query(self, schedule):
+		processed_schedule = []
 		for item in schedule:
-			simplified_schedule.append({
-				'meet_day': self.get_meet_day(item['meet_day']),
-				'meet_time': self.get_meet_time(item['meet_time_start'], item['meet_time_end']),
-				'meet_date': self.get_meet_date(item['start_date'], item['end_date']),
-				'section_type': self.get_section_type(item['type']),
-				'course': f'{item["name"]} {item["title"]}',
-				'instructor': f'{item["first_name"]} {item["last_name"]}',
-				'section_number': item['number'],
+			processed_schedule.append({
+				'meet_day': self.format_meet_day(item['meet_day']),
+				'meet_time': self.format_meet_time(item['meet_time_start'], item['meet_time_end']),
+				'meet_date': self.format_meet_date(item['start_date'], item['end_date']),
+				'section_type': self.format_section_type(item['type']),
+				'course': self.format_course(item['name'], item['title'], item['number']),
+				'instructor': self.format_instructor(item['first_name'], item['last_name']),
 				'meet_location': item['meet_location']
 			})
-		return simplified_schedule
+		return processed_schedule
 
-	def get_meet_time(self, meet_time_start, meet_time_end):
-		start = self.get_hour_minute(meet_time_start)
-		end = self.get_hour_minute(meet_time_end)
+	'''
+		Formats and truncates the course and 
+		zero-pads the section number.
 
-		start_formatted = f'{start[0]}:{start[1]}'
-		end_formatted = f'{end[0]}:{end[1]}'
+		@param name {str}
+		@param title {str}
+		@param number {str}
+		@return {str}
+	'''
+	def format_course(self, name, title, number):
+		if number < 10:
+			number = f'0{number}'
 
-		return f'{start_formatted}-{end_formatted}'
+		course = f'{name}-{number} {title}'
+		return truncate_str(course, 25)
 
-	def get_meet_date(self, start_date, end_date):
-		start = self.get_year_month_day(start_date)
-		end = self.get_year_month_day(end_date)
+	'''
+		Formats and truncates the instructor.
 
-		start_formatted = f'{start[0]}/{start[1]}/{start[2]}'
-		end_formated = f'{end[0]}/{end[1]}/{end[2]}'
+		@param first_name {str}
+		@param last_name {str}
+		@return {str}
+	'''
+	def format_instructor(self, first_name, last_name):
+		instructor = f'{first_name} {last_name}'
+		return truncate_str(instructor, 25)
 
-		return f'{start_formatted}-{end_formated}'
+	'''
+		Concatenates and truncates the starting
+		and ending meet times.
 
-	def get_meet_day(self, meet_day_int):
+		@param meet_time_start {time}
+		@param meet_time_end {time}
+		@param {str}
+	'''
+	def format_meet_time(self, meet_time_start, meet_time_end):
+		start_formatted = to_hh_mm(meet_time_start)
+		end_formatted = to_hh_mm(meet_time_end)
+
+		meet_time = f'{start_formatted} to {end_formatted}'
+		return truncate_str(meet_time, 25)
+
+	'''
+		Concatenates and truncates the starting
+		and ending meet dates.
+
+		@param start_date {date}
+		@param end_date {date}
+		@param {str}
+	'''
+	def format_meet_date(self, start_date, end_date):
+		start_formatted = to_mm_dd_yyyy(start_date)
+		end_formatted = to_mm_dd_yyyy(end_date)
+
+		meet_date = f'{start_formatted} to {end_formatted}'
+		return truncate_str(meet_date, 25)
+
+	'''
+		Maps an integer to a day of the week.
+
+		@param meet_day_int {int}
+		@return {str}
+	'''
+	def format_meet_day(self, meet_day_int):
 		meet_days = ['', 'M', 'T', 'W', 'R', 'F', 'MWF', 'TR']
 		return meet_days[meet_day_int]
 
-	def get_hour_minute(self, time):
-		return (time.hour, time.minute)
+	'''
+		Maps an integer to a section type.
 
-	def get_year_month_day(self, date):
-		return (date.year, date.month, date.day)
-
-	def get_section_type(self, section_int):
+		@param section_int {int}
+		@return {str}
+	'''
+	def format_section_type(self, section_int):
 		section_types = ['', 'Lecture', 'Online']
 		return section_types[section_int]
 
@@ -103,3 +162,8 @@ class ScheduleController(BaseController):
 	def on_choice_selection(self, choice):
 		if choice == 1:
 			self.go_back()
+
+
+
+
+
