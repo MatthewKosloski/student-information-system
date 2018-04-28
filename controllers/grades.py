@@ -1,6 +1,7 @@
-from views import GradesView
-from models import Registration, Course, Section
 from .base import BaseController
+from views import GradesView
+from models import *
+
 
 class GradesController(BaseController):
 
@@ -8,7 +9,38 @@ class GradesController(BaseController):
 		super().__init__(router, payload)
 
 		self.__view = GradesView(self)
-		self.__view.render(self.get_student_grades())
+		self.__view.render({
+			'grades': self.get_student_grades(),
+			'view_title': f'Student grades for the {self.get_term_name()} semester.'
+		})
+
+	'''
+		Queries the database for the title
+		column in terms with a specific ID.
+
+		@return {str}
+	'''
+	def get_term_name(self):
+		term_id = self.get_payload()['term_id']
+		query = (Term
+			.select(Term.title)
+			.where(Term.id == term_id)
+			.dicts())
+
+		return self.process_get_term_name(query)
+
+	'''
+		Processes the get_term_name query by
+		returning the first result.
+
+		@param query
+		@return {str}
+	'''
+	def process_get_term_name(self, query):
+		term_name = []
+		for item in query:
+			term_name.append(item['title'])
+		return term_name[0]
 
 	'''
 		Returns the student's letter grade and percent grade
@@ -32,7 +64,7 @@ class GradesController(BaseController):
 				Section.term_id == term_id)
 			.dicts())
 
-		return self.simplify_student_grades(query)
+		return self.process_get_student_grades(query)
 
 	'''
 		Modifies the results returned by the
@@ -44,7 +76,7 @@ class GradesController(BaseController):
 		@param grades {list} DB results
 		@return simplified_grades {list} Altered list 
 	'''
-	def simplify_student_grades(self, grades):
+	def process_get_student_grades(self, grades):
 		simplified_grades = []
 		for item in grades:
 			simplified_grades.append({

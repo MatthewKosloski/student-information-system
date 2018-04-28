@@ -35,9 +35,9 @@ class SectionsView(BaseView):
 		return table
 
 	def render(self, payload):
-		self.print_title('Schedule')
+		self.print_title(payload['view_title'])
 
-		print(self.get_table(payload))
+		print(self.get_table(payload['sections']))
 		print()
 		print(self.get_choices_list())
 		print()

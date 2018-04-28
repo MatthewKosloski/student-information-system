@@ -10,15 +10,59 @@ class SectionsController(BaseController):
 
 		self.__view = SectionsView(self)
 
-		if self.get_route_parts()[0] == 'student':
-			self.__view.render(self.get_student_schedule())
+		if self.get_route_parts()[0] == 'student': 
+			self.__view.render({
+				'sections': self.get_student_schedule(),
+				'view_title': f'Student schedule for the {self.get_term_name()} semester.'
+			})
 		elif self.get_route_parts()[0] == 'search':
 			if 'term_id' in payload:
-				self.__view.render(self.get_sections_by_term_id())
+				self.__view.render({
+					'sections': self.get_sections_by_term_id(),
+					'view_title': f'Sections for the {self.get_term_name()} semester.'
+				})
 			elif 'course_name' in payload:
-				self.__view.render(self.get_sections_by_course_name())
+				self.__view.render({
+					'sections': self.get_sections_by_course_name(),
+					'view_title': f'Sections for course {self.get_payload()["course_name"]}.'
+				})
 
+	'''
+		Queries the database for the title
+		column in terms with a specific ID.
 
+		@return {str}
+	'''
+	def get_term_name(self):
+		term_id = self.get_payload()['term_id']
+		query = (Term
+			.select(Term.title)
+			.where(Term.id == term_id)
+			.dicts())
+
+		return self.process_get_term_name(query)
+
+	'''
+		Processes the get_term_name query by
+		returning the first result.
+
+		@param query
+		@return {str}
+	'''
+	def process_get_term_name(self, query):
+		term_name = []
+		for item in query:
+			term_name.append(item['title'])
+		return term_name[0]
+
+	'''
+		Queries the database for sections
+		with a specific course name. This is 
+		used for searching for sections by course
+		name.
+
+		@return {list}
+	'''
 	def get_sections_by_course_name(self):
 		course_name = self.get_payload()['course_name']
 		query = (Section
@@ -73,6 +117,12 @@ class SectionsController(BaseController):
 
 		return self.process_section_query(query)
 
+	'''
+		Queries the database for sections
+		from a term (e.g., Fall 2018). This
+		is used for searching for sections
+		by term.
+	'''
 	def get_sections_by_term_id(self):
 		term_id = self.get_payload()['term_id']
 		query = (Section

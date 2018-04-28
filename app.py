@@ -1,5 +1,6 @@
 from router import Router
 from routes import *
+from models import *
 
 def main():
 	router = Router()

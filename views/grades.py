@@ -23,9 +23,9 @@ class GradesView(BaseView):
 		return table
 
 	def render(self, payload):
-		self.print_title('Student Grades')
+		self.print_title(payload['view_title'])
 
-		print(self.get_grades_table(payload))
+		print(self.get_grades_table(payload['grades']))
 		print()
 		print(self.get_choices_list())
 		print()

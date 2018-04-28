@@ -10,7 +10,7 @@ class TermSelectionController(BaseController):
 
 		self.__view = TermSelectionView(self)
 
-		if self.get_route_parts()[0] == 'student':
+		if self.get_route_parts()[0] == 'student': # Student schedule
 			self.render_student_terms()
 		elif self.get_route_parts()[0] == 'search': # Search for sections
 			self.render_all_terms()
@@ -40,12 +40,15 @@ class TermSelectionController(BaseController):
 
 		return query
 
+	'''
+		Queries the database for all terms,
+		returning title and ID columns.
+
+		@return {dict}
+	'''
 	def get_all_terms(self):
-		query = (Registration
+		query = (Term
 			.select(Term.title, Term.id)
-			.distinct()
-			.join(Section, on=(Registration.section_id == Section.id))
-			.join(Term, on=(Section.term_id == Term.id))
 			.dicts())
 
 		return query
@@ -62,7 +65,7 @@ class TermSelectionController(BaseController):
 		term_ids = [term['id'] for term in query]
 		return {
 			'terms': terms, 
-			'term_ids': term_ids, 
+			'term_ids': term_ids
 		}
 
 	'''
