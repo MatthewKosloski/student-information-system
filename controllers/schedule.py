@@ -11,7 +11,7 @@ class ScheduleController(BaseController):
 
 		self.__view = ScheduleView(self)
 		self.__view.render(self.get_student_schedule())
-
+		
 	'''
 		Determine which model to use for queries
 		based on the "type" key found in
@@ -26,13 +26,14 @@ class ScheduleController(BaseController):
 
 	'''
 		Queries the database and returns
-		information pertaining to the student's
-		schedule.
+		a student's schedule from a specific
+		term.
 
 		@return {list}
 	'''
 	def get_student_schedule(self):
 		student_id = self.get_payload()['id']
+		term_id = self.get_payload()['term_id']
 		query = (Registration
 			.select(Course.name,
 				Course.title, 
@@ -49,7 +50,8 @@ class ScheduleController(BaseController):
 			.join(Section, on=(Registration.section_id == Section.id))
 			.join(Course, on=(Section.course_id == Course.id))
 			.join(Instructor, on=(Section.instructor_id == Instructor.id))
-			.where(Registration.student_id == student_id)
+			.where(Registration.student_id == student_id, 
+				Section.term_id == term_id)
 			.dicts())
 
 		return self.process_student_schedule_query(query)
@@ -159,7 +161,7 @@ class ScheduleController(BaseController):
 		@param choice {int} Number corresponding to
 		the view in the ordered list menu.
 	'''
-	def on_choice_selection(self, choice):
+	def on_choice_selection(self, choice, meta):
 		if choice == 1:
 			self.go_back()
 

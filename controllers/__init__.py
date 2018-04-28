@@ -6,3 +6,4 @@ from .profile import ProfileController
 from .password import PasswordController
 from .grades import GradesController
 from .schedule import ScheduleController
+from .term_selection import TermSelectionController

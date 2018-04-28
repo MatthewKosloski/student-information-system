@@ -1,11 +1,13 @@
 # Generic routes
-HOME_ROUTE = '/'
-ABOUT_ROUTE = '/about'
-LOGIN_ROUTE = '/login'
-CHANGE_PASSWORD_ROUTE = '/change-password'
+HOME_ROUTE = 'home'
+ABOUT_ROUTE = 'about'
+LOGIN_ROUTE = 'login'
+CHANGE_PASSWORD_ROUTE = 'change-password'
 
 # Student routes
-STUDENT_ROUTE = '/student'
-STUDENT_PROFILE_ROUTE = '/student/profile'
-STUDENT_GRADES_ROUTE = '/student/grades'
-STUDENT_SCHEDULE_ROUTE = '/student/schedule'
+STUDENT_ROUTE = 'student'
+STUDENT_PROFILE_ROUTE = 'student/profile'
+STUDENT_GRADES_SELECT_TERM_ROUTE = 'student/grades/select-term'
+STUDENT_GRADES_TERM_GRADES_ROUTE = 'student/grades/term-grades'
+STUDENT_SCHEDULE_SELECT_TERM_ROUTE = 'student/schedule/select-term'
+STUDENT_SCHEDULE_TERM_SCHEDULE_ROUTE = 'student/schedule/term-schedule'

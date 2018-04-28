@@ -13,8 +13,10 @@ def main():
 	# Student routes
 	router.add(STUDENT_ROUTE, 'StudentController')
 	router.add(STUDENT_PROFILE_ROUTE, 'ProfileController')
-	router.add(STUDENT_GRADES_ROUTE, 'GradesController')
-	router.add(STUDENT_SCHEDULE_ROUTE, 'ScheduleController')
+	router.add(STUDENT_GRADES_SELECT_TERM_ROUTE, 'TermSelectionController')
+	router.add(STUDENT_GRADES_TERM_GRADES_ROUTE, 'GradesController')
+	router.add(STUDENT_SCHEDULE_SELECT_TERM_ROUTE, 'TermSelectionController')
+	router.add(STUDENT_SCHEDULE_TERM_SCHEDULE_ROUTE, 'ScheduleController')
 
 	# Call '__init__' on the MainController
 	router.dispatch(HOME_ROUTE)

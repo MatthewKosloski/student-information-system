@@ -20,6 +20,7 @@ class GradesController(BaseController):
 	'''
 	def get_student_grades(self):
 		student_id = self.get_payload()['id']
+		term_id = self.get_payload()['term_id']
 		query = (Registration
 			.select(Registration.letter_grade,
 				Registration.percent_grade, 
@@ -27,7 +28,8 @@ class GradesController(BaseController):
 				Course.title)
 			.join(Section, on=(Registration.section_id == Section.id))
 			.join(Course, on=(Section.course_id == Course.id))
-			.where(Registration.student_id == student_id)
+			.where(Registration.student_id == student_id, 
+				Section.term_id == term_id)
 			.dicts())
 
 		return self.simplify_student_grades(query)
@@ -92,7 +94,7 @@ class GradesController(BaseController):
 		@param choice {int} Number corresponding to
 		the view in the ordered list menu.
 	'''
-	def on_choice_selection(self, choice):
+	def on_choice_selection(self, choice, meta):
 		student_id = self.get_payload()
 		if choice == 1:
 			self.go_back()

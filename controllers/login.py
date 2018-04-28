@@ -53,7 +53,9 @@ class LoginController(BaseController):
 
 				if db_account.password == password:
 					self.__view.set_login_status(True)
-					self.dispatch(STUDENT_ROUTE, db_account.id)
+					self.dispatch(STUDENT_ROUTE, {
+						'id': db_account.id
+					})
 				else:
 					self.__view.print_message('Incorrect password!')
 

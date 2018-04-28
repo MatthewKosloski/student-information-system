@@ -6,3 +6,4 @@ from .profile import ProfileView
 from .password import PasswordView
 from .grades import GradesView
 from .schedule import ScheduleView
+from .term_selection import TermSelectionView

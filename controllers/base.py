@@ -33,3 +33,19 @@ class BaseController():
 	'''
 	def get_payload(self):
 		return self.__payload
+
+	'''
+		Returns the route with which
+		the controller was instantiated.
+	'''
+	def get_route(self):
+		return self.__payload['__route']
+
+	'''
+		Returns the parts of the route
+		as a tuple.
+		
+		@return {tuple}
+	'''
+	def get_route_parts(self):
+		return tuple(self.__payload['__route'].split('/'))

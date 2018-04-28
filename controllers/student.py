@@ -10,7 +10,7 @@ class StudentController(BaseController):
 
 		self.__view = StudentView(self)
 
-		self.__view.render(self.get_username_and_full_name(payload))
+		self.__view.render(self.get_username_and_full_name())
 
 	'''
 		Get the username, firstname, and lastname
@@ -21,13 +21,14 @@ class StudentController(BaseController):
 		and full name of the user to be displayed in the
 		student view.
 	'''
-	def get_username_and_full_name(self, id):
+	def get_username_and_full_name(self):
+		student_id = self.get_payload()['id']
 		try:
 			query = (Student
 				.select(Student.username, 
 					Student.first_name, 
 					Student.last_name)
-				.where(Student.id == id)
+				.where(Student.id == student_id)
 				.get())
 
 			return {
@@ -44,8 +45,8 @@ class StudentController(BaseController):
 		@param choice {int} Number corresponding to
 		the view in the ordered list menu.
 	'''
-	def on_choice_selection(self, choice):
-		student_id = self.get_payload()
+	def on_choice_selection(self, choice, meta):
+		student_id = self.get_payload()['id']
 
 		student_payload = {'type': 'student', 'id': student_id}
 
@@ -54,9 +55,9 @@ class StudentController(BaseController):
 		elif choice == 2: # Change Password
 			self.dispatch(CHANGE_PASSWORD_ROUTE, student_payload)
 		elif choice == 3: # Student grades
-			self.dispatch(STUDENT_GRADES_ROUTE, student_payload)
+			self.dispatch(STUDENT_GRADES_SELECT_TERM_ROUTE, student_payload)
 		elif choice == 4: # Student schedule
-			self.dispatch(STUDENT_SCHEDULE_ROUTE, student_payload)
+			self.dispatch(STUDENT_SCHEDULE_SELECT_TERM_ROUTE, student_payload)
 		elif choice == 5: # Logout
 			self.dispatch(HOME_ROUTE)
 		else:

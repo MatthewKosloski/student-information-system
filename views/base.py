@@ -5,6 +5,7 @@ class BaseView():
 	def __init__(self, controller):
 		self.__controller = controller
 		self.__choices = ['Exit']
+		self.__choices_meta = ['']
 
 	'''
 		Get the controller for this view.
@@ -27,8 +28,15 @@ class BaseView():
 
 		@param choices {list}
 	'''
-	def set_choices(self, choices):
+	def set_choices(self, choices, choices_meta = []):
 		self.__choices += choices
+
+		# Each choice has empty string meta value
+		# if no argument is provided.
+		if len(choices_meta) == 0:
+			self.__choices_meta += ['' for choice in choices]
+		else:
+			self.__choices_meta += choices_meta
 
 	'''
 		Print the title and optional subtitle
@@ -63,7 +71,7 @@ class BaseView():
 	'''
 	def handle_choice(self, choice):
 		if choice != 0:
-			self.__controller.on_choice_selection(int(choice))
+			self.__controller.on_choice_selection(int(choice), self.__choices_meta[choice])
 
 
 	'''
