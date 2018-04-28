@@ -1,28 +1,18 @@
 from .base import BaseController
-from views import ScheduleView
-from routes import HOME_ROUTE
+from views import SectionsView
 from utils import *
 from models import *
 
-class ScheduleController(BaseController):
+class SectionsController(BaseController):
 
 	def __init__(self, router, payload):
 		super().__init__(router, payload)
 
-		self.__view = ScheduleView(self)
-		self.__view.render(self.get_student_schedule())
-		
-	'''
-		Determine which model to use for queries
-		based on the "type" key found in
-		the payload.
-
-		@return {Model}
-	'''
-	def get_model(self):
-		account_type = self.get_payload()['type']
-		if account_type == 'student':
-			return Student
+		self.__view = SectionsView(self)
+		if self.get_route_parts()[0] == 'student':
+			self.__view.render(self.get_student_schedule())
+		elif self.get_route_parts()[0] == 'search':
+			self.__view.render(self.get_sections_by_term_id())
 
 	'''
 		Queries the database and returns
@@ -54,7 +44,29 @@ class ScheduleController(BaseController):
 				Section.term_id == term_id)
 			.dicts())
 
-		return self.process_student_schedule_query(query)
+		return self.process_section_query(query)
+
+	def get_sections_by_term_id(self):
+		term_id = self.get_payload()['term_id']
+		query = (Section
+			.select(Course.name,
+				Course.title, 
+				Section.number, 
+				Instructor.first_name, 
+				Instructor.last_name, 
+				Section.meet_day, 
+				Section.meet_location, 
+				Section.meet_time_start, 
+				Section.meet_time_end, 
+				Section.start_date, 
+				Section.end_date, 
+				Section.type)
+			.join(Course, on=(Section.course_id == Course.id))
+			.join(Instructor, on=(Section.instructor_id == Instructor.id))
+			.where(Section.term_id == term_id)
+			.dicts())
+
+		return self.process_section_query(query)
 
 	'''
 		Refines the student schedule results from
@@ -63,7 +75,7 @@ class ScheduleController(BaseController):
 		@param schedule {dict}
 		@return processed_schedule {list}
 	'''
-	def process_student_schedule_query(self, schedule):
+	def process_section_query(self, schedule):
 		processed_schedule = []
 		for item in schedule:
 			processed_schedule.append({

@@ -5,5 +5,6 @@ from .student import StudentView
 from .profile import ProfileView
 from .password import PasswordView
 from .grades import GradesView
-from .schedule import ScheduleView
+from .sections import SectionsView
 from .term_selection import TermSelectionView
+from .search import SearchView

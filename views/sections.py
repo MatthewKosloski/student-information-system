@@ -1,7 +1,7 @@
 from .base import BaseView
 from table import Table
 
-class ScheduleView(BaseView):
+class SectionsView(BaseView):
 
 	def __init__(self, controller):
 		super().__init__(controller)
@@ -10,7 +10,7 @@ class ScheduleView(BaseView):
 			'Back'
 		])
 		
-	def get_schedule_table(self, schedule):
+	def get_table(self, schedule):
 		table = Table([
 			'Course', 
 			'Instructor',
@@ -37,7 +37,7 @@ class ScheduleView(BaseView):
 	def render(self, payload):
 		self.print_title('Schedule')
 
-		print(self.get_schedule_table(payload))
+		print(self.get_table(payload))
 		print()
 		print(self.get_choices_list())
 		print()

@@ -5,5 +5,6 @@ from .student import StudentController
 from .profile import ProfileController
 from .password import PasswordController
 from .grades import GradesController
-from .schedule import ScheduleController
+from .sections import SectionsController
 from .term_selection import TermSelectionController
+from .search import SearchController

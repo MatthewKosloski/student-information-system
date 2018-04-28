@@ -58,7 +58,9 @@ class StudentController(BaseController):
 			self.dispatch(STUDENT_GRADES_SELECT_TERM_ROUTE, student_payload)
 		elif choice == 4: # Student schedule
 			self.dispatch(STUDENT_SCHEDULE_SELECT_TERM_ROUTE, student_payload)
-		elif choice == 5: # Logout
+		elif choice == 5: # Search for Sections
+			self.dispatch(SEARCH_ROUTE)
+		elif choice == 6: # Logout
 			self.dispatch(HOME_ROUTE)
 		else:
 			self.dispatch(HOME_ROUTE)

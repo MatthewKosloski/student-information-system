@@ -4,6 +4,12 @@ ABOUT_ROUTE = 'about'
 LOGIN_ROUTE = 'login'
 CHANGE_PASSWORD_ROUTE = 'change-password'
 
+# Search routes
+SEARCH_ROUTE = 'search'
+SEARCH_SELECT_TERM_ROUTE = 'search/select-term'
+SEARCH_RESULTS_ROUTE = 'search/results'
+# SEARCH_SELECT_COURSE_NAME_ROUTE = 'search/select-name'
+
 # Student routes
 STUDENT_ROUTE = 'student'
 STUDENT_PROFILE_ROUTE = 'student/profile'
