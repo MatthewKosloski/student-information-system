@@ -8,3 +8,5 @@ from .grades import GradesController
 from .sections import SectionsController
 from .term_selection import TermSelectionController
 from .search import SearchController
+from .name_selection import NameSelectionController
+from .register import RegisterController

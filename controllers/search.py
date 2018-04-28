@@ -23,4 +23,4 @@ class SearchController(BaseController):
 		elif choice == 2:
 			self.dispatch(SEARCH_SELECT_TERM_ROUTE)
 		elif choice == 3:
-			self.dispatch(HOME_ROUTE)
+			self.dispatch(SEARCH_SELECT_NAME_ROUTE)

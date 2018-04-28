@@ -94,6 +94,24 @@ class BaseView():
 		return val
 
 	'''
+		Asks the user for a "Y" or "N."
+
+		@param input_str {str} Text to be prompted to user
+		@return val {str} String received from user
+	'''
+	def get_y_or_n(self, input_str):
+		while True:
+			val = input(input_str)
+
+			if val.lower() == 'y' or val.lower() == 'n':
+				break
+			else:
+				print('Please enter either "y" or "n."')
+				continue
+			
+		return val
+
+	'''
 		Keeps prompting the user to
 		enter an integer between a given range.
 

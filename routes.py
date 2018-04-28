@@ -8,7 +8,7 @@ CHANGE_PASSWORD_ROUTE = 'change-password'
 SEARCH_ROUTE = 'search'
 SEARCH_SELECT_TERM_ROUTE = 'search/select-term'
 SEARCH_RESULTS_ROUTE = 'search/results'
-# SEARCH_SELECT_COURSE_NAME_ROUTE = 'search/select-name'
+SEARCH_SELECT_NAME_ROUTE = 'search/select-name'
 
 # Student routes
 STUDENT_ROUTE = 'student'
@@ -17,3 +17,4 @@ STUDENT_GRADES_SELECT_TERM_ROUTE = 'student/grades/select-term'
 STUDENT_GRADES_TERM_GRADES_ROUTE = 'student/grades/term-grades'
 STUDENT_SCHEDULE_SELECT_TERM_ROUTE = 'student/schedule/select-term'
 STUDENT_SCHEDULE_TERM_SCHEDULE_ROUTE = 'student/schedule/term-schedule'
+STUDENT_REGISTER_ROUTE = 'student/register'

@@ -8,3 +8,5 @@ from .grades import GradesView
 from .sections import SectionsView
 from .term_selection import TermSelectionView
 from .search import SearchView
+from .name_selection import NameSelectionView
+from .register import RegisterView

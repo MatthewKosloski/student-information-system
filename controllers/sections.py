@@ -9,10 +9,37 @@ class SectionsController(BaseController):
 		super().__init__(router, payload)
 
 		self.__view = SectionsView(self)
+
 		if self.get_route_parts()[0] == 'student':
 			self.__view.render(self.get_student_schedule())
 		elif self.get_route_parts()[0] == 'search':
-			self.__view.render(self.get_sections_by_term_id())
+			if 'term_id' in payload:
+				self.__view.render(self.get_sections_by_term_id())
+			elif 'course_name' in payload:
+				self.__view.render(self.get_sections_by_course_name())
+
+
+	def get_sections_by_course_name(self):
+		course_name = self.get_payload()['course_name']
+		query = (Section
+			.select(Course.name,
+				Course.title, 
+				Section.number, 
+				Instructor.first_name, 
+				Instructor.last_name, 
+				Section.meet_day, 
+				Section.meet_location, 
+				Section.meet_time_start, 
+				Section.meet_time_end, 
+				Section.start_date, 
+				Section.end_date, 
+				Section.type)
+			.join(Course, on=(Section.course_id == Course.id))
+			.join(Instructor, on=(Section.instructor_id == Instructor.id))
+			.where(Course.name == course_name)
+			.dicts())
+
+		return self.process_section_query(query)
 
 	'''
 		Queries the database and returns
