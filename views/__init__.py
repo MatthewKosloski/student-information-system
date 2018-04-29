@@ -10,3 +10,4 @@ from .term_selection import TermSelectionView
 from .search import SearchView
 from .name_selection import NameSelectionView
 from .register import RegisterView
+from .instructor import InstructorView

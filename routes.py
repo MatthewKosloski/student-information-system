@@ -18,3 +18,6 @@ STUDENT_GRADES_TERM_GRADES_ROUTE = 'student/grades/term-grades'
 STUDENT_SCHEDULE_SELECT_TERM_ROUTE = 'student/schedule/select-term'
 STUDENT_SCHEDULE_TERM_SCHEDULE_ROUTE = 'student/schedule/term-schedule'
 STUDENT_REGISTER_ROUTE = 'student/register'
+
+# Instructor routes
+INSTRUCTOR_ROUTE = 'instructor'

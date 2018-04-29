@@ -25,6 +25,9 @@ def main():
 	router.add(STUDENT_SCHEDULE_TERM_SCHEDULE_ROUTE, 'SectionsController')
 	router.add(STUDENT_REGISTER_ROUTE, 'RegisterController')
 
+	# Instructor routes
+	router.add(INSTRUCTOR_ROUTE, 'InstructorController')
+
 	# Call '__init__' on the MainController
 	router.dispatch(HOME_ROUTE)
 
