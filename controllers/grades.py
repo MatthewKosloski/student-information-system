@@ -10,7 +10,7 @@ class GradesController(BaseController):
 
 		self.__view = GradesView(self)
 		self.__view.render({
-			'grades': self.get_student_grades(),
+			'grades': self.process_get_student_grades(self.get_student_grades()),
 			'view_title': f'Student grades for the {self.get_term_name()} semester.'
 		})
 
@@ -64,7 +64,7 @@ class GradesController(BaseController):
 				Section.term_id == term_id)
 			.dicts())
 
-		return self.process_get_student_grades(query)
+		return query
 
 	'''
 		Modifies the results returned by the

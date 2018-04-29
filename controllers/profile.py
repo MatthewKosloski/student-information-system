@@ -10,7 +10,7 @@ class ProfileController(BaseController):
 		super().__init__(router, payload)
 
 		self.__view = ProfileView(self)
-		self.__view.render(self.get_student_profile())
+		self.__view.render(self.process_get_student_profile(self.get_student_profile()))
 
 	'''
 		Queries the database and returns a dictionary
@@ -38,7 +38,7 @@ class ProfileController(BaseController):
 			).where(Student.id == student_id)
 			.dicts())
 
-		return self.process_get_student_profile(query)
+		return query
 
 	def process_get_student_profile(self, query):
 		profile = []

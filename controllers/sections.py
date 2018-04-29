@@ -10,20 +10,25 @@ class SectionsController(BaseController):
 
 		self.__view = SectionsView(self)
 
-		if self.get_route_parts()[0] == 'student': 
+		if self.get_route_parts()[0] == 'student':
+			term = self.process_get_term_name(self.get_term_name()) 
+			sections = self.process_section_query(self.get_student_schedule())
 			self.__view.render({
-				'sections': self.get_student_schedule(),
-				'view_title': f'Student schedule for the {self.get_term_name()} semester.'
+				'sections': sections,
+				'view_title': f'Student schedule for the {term} semester.'
 			})
 		elif self.get_route_parts()[0] == 'search':
 			if 'term_id' in payload:
+				term = self.process_get_term_name(self.get_term_name()) 
+				sections = self.process_section_query(self.get_sections_by_term_id())
 				self.__view.render({
-					'sections': self.get_sections_by_term_id(),
-					'view_title': f'Sections for the {self.get_term_name()} semester.'
+					'sections': sections,
+					'view_title': f'Sections for the {term} semester.'
 				})
 			elif 'course_name' in payload:
+				sections = self.process_section_query(self.get_sections_by_course_name())
 				self.__view.render({
-					'sections': self.get_sections_by_course_name(),
+					'sections': sections,
 					'view_title': f'Sections for course {self.get_payload()["course_name"]}.'
 				})
 
@@ -40,7 +45,7 @@ class SectionsController(BaseController):
 			.where(Term.id == term_id)
 			.dicts())
 
-		return self.process_get_term_name(query)
+		return query
 
 	'''
 		Processes the get_term_name query by
@@ -83,7 +88,7 @@ class SectionsController(BaseController):
 			.where(Course.name == course_name)
 			.dicts())
 
-		return self.process_section_query(query)
+		return query
 
 	'''
 		Queries the database and returns
@@ -115,7 +120,7 @@ class SectionsController(BaseController):
 				Section.term_id == term_id)
 			.dicts())
 
-		return self.process_section_query(query)
+		return query
 
 	'''
 		Queries the database for sections
@@ -143,7 +148,7 @@ class SectionsController(BaseController):
 			.where(Section.term_id == term_id)
 			.dicts())
 
-		return self.process_section_query(query)
+		return query
 
 	'''
 		Refines the student schedule results from
