@@ -60,7 +60,7 @@ class Table:
 		return max(column_len, longest_column_field_len)
 
 	def __str__(self):
-		output = self.row_str(self.__columns) + '\n'
+		output = self.row_str(self.__columns)
 		output += '\n'
 		for row in self.__rows:
 			output += self.row_str(row) + '\n'
