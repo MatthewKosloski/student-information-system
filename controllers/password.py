@@ -1,5 +1,6 @@
 from .base import BaseController
 from views import PasswordView
+from models import Registrar
 from models import Student
 
 class PasswordController(BaseController):
@@ -21,7 +22,8 @@ class PasswordController(BaseController):
 		account_type = self.get_payload()['type']
 		if account_type == 'student':
 			return Student
-
+		elif account_type == 'registrar':
+			return registrar
 	'''
 		Gets the user's current password from the
 		database. Query is based on the user's id,
@@ -72,6 +74,8 @@ class PasswordController(BaseController):
 		account_id = self.get_payload()['id']
 		if account_type == 'student':
 			self.dispatch('/student', account_id)
+		elif account_type == 'registrar':
+			self.dispatch('/registrar', account_id)
 		else:
 			self.dispatch('/')
 

@@ -1,5 +1,6 @@
 from .base import BaseController
 from views import ProfileView
+from models import Registrar
 from models import Student
 
 class ProfileController(BaseController):
@@ -21,6 +22,8 @@ class ProfileController(BaseController):
 		account_type = self.get_payload()['type']
 		if account_type == 'student':
 			return Student
+		elif account_type == 'registrar':
+			return Registrar
 
 	'''
 		Queries the database and returns a dictionary
@@ -58,6 +61,8 @@ class ProfileController(BaseController):
 		account_id = self.get_payload()['id']
 		if account_type == 'student':
 			self.dispatch('/student', account_id)
+		elif account_type == 'registrar':
+			self.dispatch('/registrar', account_id)
 		else:
 			self.dispatch('/')
 

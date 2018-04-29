@@ -16,6 +16,10 @@ def main():
 	router.add('/student/profile', {'controller': 'ProfileController'})
 	router.add('/student/grades', {'controller': 'GradesController'})
 
+	router.add('/registrar', {'controller': 'RegistrarController'})
+	router.add('/registrar/profile', {'controller': 'ProfileController'})
+	router.add('/registrar/courses', {'controller': 'CoursesController'})
+
 	# Call '__init__' on the MainController
 	router.dispatch('/')
 

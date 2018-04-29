@@ -1,6 +1,7 @@
 from peewee import *
 from views import LoginView
 from models import Student
+from models import Registrar
 from .base import BaseController
 
 
@@ -61,5 +62,14 @@ class LoginController(BaseController):
 		elif account == 2: # instructor account
 			# Not implemented yet. Temporary redirect
 			self.dispatch('/')
+		elif account == 3:
+			try:
+				db_account = self.get_account(Registrar, username)
 
-
+				if db_account.password == password:
+					self.__view.set_login_status(True)
+					self.dispatch('/registrar', db_account.id)
+				else:
+					self.__view.print_message('Incorrect password!')
+			except ValueError as e:
+				self.__view.print_message(e)
