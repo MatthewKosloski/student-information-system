@@ -1,9 +1,7 @@
-from peewee import *
-from views import LoginView
-from models import Student
-from routes import STUDENT_ROUTE, HOME_ROUTE
 from .base import BaseController
-
+from views import LoginView
+from models import Student, Instructor
+from routes import *
 
 class LoginController(BaseController):
 
@@ -12,6 +10,45 @@ class LoginController(BaseController):
 
 		self.__view = LoginView(self)
 		self.__view.render(payload)
+
+	'''
+		Determines which type of login to do
+		based on the account selection.
+
+		@param account {int}
+		@param username {str}
+		@param password {str}
+	'''
+	def on_credentials_selection(self, account, username, password):
+
+		if account == 1:
+			self.login(Student, STUDENT_ROUTE, username, password)
+		elif account == 2:
+			self.login(Instructor, INSTRUCTOR_ROUTE, username, password)
+
+	'''
+		Checks if the user's password in the database
+		matches the one provided. If so, they are redirected
+		to the provided route and the account's ID is passed
+		along.
+
+		@param model {BaseModel} Type of model to query
+		@param route {str} Where to take user on successful login
+		@param username {str}
+		@param password {str}
+	'''
+	def login(self, model, route, username, password):
+		try:
+			db_account = self.get_account(model, username)
+
+			if db_account.password == password:
+				self.__view.set_login_status(True)
+				self.dispatch(route, {'id': db_account.id})
+			else:
+				self.__view.print_message('Incorrect password!')
+
+		except ValueError as e:
+			self.__view.print_message(e)
 
 	'''
 		Returns the id, username, and password
@@ -35,34 +72,5 @@ class LoginController(BaseController):
 			raise ValueError(('Either the username is incorrect' +
 				' or the account doesn\'t exist!'))
 
-	'''
-		Checks if the user's password in the database
-		matches the one provided. If so, they are redirected
-		to the student view and the student's ID is passed
-		along.
-
-		@param account {int} Type of account selected from view
-		@param username {str} Username of the user
-		@param password {str} Password to compare to the one in db
-	'''
-	def login(self, account, username, password):
-
-		if account == 1: # student account
-			try:
-				db_account = self.get_account(Student, username)
-
-				if db_account.password == password:
-					self.__view.set_login_status(True)
-					self.dispatch(STUDENT_ROUTE, {
-						'id': db_account.id
-					})
-				else:
-					self.__view.print_message('Incorrect password!')
-
-			except ValueError as e:
-				self.__view.print_message(e)
-		elif account == 2: # instructor account
-			# Not implemented yet. Temporary redirect
-			self.dispatch(HOME_ROUTE)
 
 
