@@ -73,7 +73,6 @@ class BaseView():
 		if choice != 0:
 			self.__controller.on_choice_selection(int(choice), self.__choices_meta[choice])
 
-
 	'''
 		Keeps prompting the user for
 		a string if no string is provided.
@@ -129,6 +128,26 @@ class BaseView():
 				val = int(input(input_str))
 			except ValueError as e:
 				print(f'Please enter an integer between {range[0]} and {range[1]}.')
+		return val
+
+	'''
+		Keeps prompting the user to
+		enter a float between a given range.
+
+		@param input_str {str} Text to be prompted to user
+		@param range {tuple} Tuple of two floats, where the
+		first is the min and second is the max e.g., (0.0, 100.0)
+		@return val {int} Int received from user
+	'''
+	def get_float_range(self, input_str, range):
+		# init val to the integer less than the min
+		val = range[0] - 1
+
+		while not (val >= range[0] and val <= range[1]):
+			try:
+				val = float(input(input_str))
+			except ValueError as e:
+				print(f'Please enter a float between {range[0]} and {range[1]}.')
 		return val
 
 	'''

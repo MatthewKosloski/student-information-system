@@ -1,5 +1,6 @@
 from router import Router
 from routes import *
+from models import *
 
 def main():
 	router = Router()
@@ -27,10 +28,10 @@ def main():
 
 	# Instructor routes
 	router.add(INSTRUCTOR_ROUTE, 'InstructorController')
+	router.add(INSTRUCTOR_INPUT_GRADES_ROUTE, 'InputGradesController')
 
 	# Call '__init__' on the MainController
 	router.dispatch(HOME_ROUTE)
-
 
 if __name__ == '__main__':
 	main()

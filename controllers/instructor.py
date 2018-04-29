@@ -1,5 +1,8 @@
 from .base import BaseController
 from views import InstructorView
+from models import Instructor
+from common_queries import get_username_and_full_name
+from routes import *
 
 class InstructorController(BaseController):
 
@@ -7,7 +10,11 @@ class InstructorController(BaseController):
 		super().__init__(router, payload)
 
 		self.__view = InstructorView(self)
-		self.__view.render(payload)
+
+		try:
+			self.__view.render(get_username_and_full_name(Instructor, payload['id']))
+		except ValueError as e:
+			self.__view.print_message(e)
 
 	'''
 		Handle the user's choice and redirect
@@ -15,7 +22,23 @@ class InstructorController(BaseController):
 		
 		@param choice {int} Number corresponding to
 		the view in the ordered list menu.
+
+		@param meta {any} Any data associated with
+		the choice number. This is set in the 2nd
+		(optional) argument to set_choices in the view.
+		Can be used to provide some info to dynamic list items.
 	'''
 	def on_choice_selection(self, choice, meta):
-		if choice == 1:
-			self.go_back()
+		instructor_id = self.get_payload()['id']
+		instructor_payload = {'type': 'instructor', 'id': instructor_id}
+
+		if choice == 1: # Change Password
+			self.dispatch(CHANGE_PASSWORD_ROUTE, instructor_payload)
+		elif choice == 2: # Input Grades
+			self.dispatch(INSTRUCTOR_INPUT_GRADES_ROUTE, {'id': instructor_id})
+		elif choice == 3: # Logout
+			self.dispatch(HOME_ROUTE)
+
+
+
+

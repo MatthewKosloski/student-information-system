@@ -6,14 +6,15 @@ class InstructorView(BaseView):
 		super().__init__(controller)
 
 		self.set_choices([
-			'Back'
+			# 'View Profile',
+			'Change Password',
+			'Input Grades (incomplete)',
+			'Logout'
 		])
 		
 	def render(self, payload):
-		self.print_title('Instructor View')
+		self.print_title(f'Welcome, {payload["username"]} ({payload["full_name"]})!')
 		
-		print('Payload:', payload)
-		print()
 		print(self.get_choices_list())
 		print()
 		self.choice_prompt()

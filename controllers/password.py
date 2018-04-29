@@ -1,6 +1,6 @@
 from .base import BaseController
 from views import PasswordView
-from models import Student
+from models import Student, Instructor
 
 class PasswordController(BaseController):
 
@@ -21,6 +21,8 @@ class PasswordController(BaseController):
 		account_type = self.get_payload()['type']
 		if account_type == 'student':
 			return Student
+		elif account_type == 'instructor':
+			return Instructor
 
 	'''
 		Gets the user's current password from the
@@ -30,7 +32,6 @@ class PasswordController(BaseController):
 		@return {str} User's current password
 	'''
 	def get_password(self):
-		account_type = self.get_payload()['type']
 		account_id = self.get_payload()['id']
 		model = self.get_model()
 
@@ -52,7 +53,6 @@ class PasswordController(BaseController):
 		@return updated_rows {int} Amount of rows updated
 	'''
 	def set_password(self, password):
-		account_type = self.get_payload()['type']
 		account_id = self.get_payload()['id']
 		model = self.get_model()
 

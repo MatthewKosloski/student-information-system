@@ -1,6 +1,7 @@
 from .base import BaseController
 from views import StudentView
 from models import Student
+from common_queries import get_username_and_full_name
 from routes import *
 
 class StudentController(BaseController):
@@ -10,33 +11,10 @@ class StudentController(BaseController):
 
 		self.__view = StudentView(self)
 
-		self.__view.render(self.get_username_and_full_name())
-
-	'''
-		Get the username, firstname, and lastname
-		from the student whose ID is the one provided.
-
-		@param id {int} ID of the student
-		@return {dict} A dictionary containing the username
-		and full name of the user to be displayed in the
-		student view.
-	'''
-	def get_username_and_full_name(self):
-		student_id = self.get_payload()['id']
 		try:
-			query = (Student
-				.select(Student.username, 
-					Student.first_name, 
-					Student.last_name)
-				.where(Student.id == student_id)
-				.get())
-
-			return {
-				'username': query.username,
-				'full_name': f'{query.first_name} {query.last_name}'
-			}
-		except DoesNotExist:
-			self.__view.print_message('Student does not exist.')
+			self.__view.render(get_username_and_full_name(Student, payload['id']))
+		except ValueError as e:
+			self.__view.print_message(e)
 
 	'''
 		Handle the user's choice and redirect

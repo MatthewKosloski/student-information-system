@@ -2,6 +2,7 @@ from .base import BaseController
 from views import LoginView
 from models import Student, Instructor
 from routes import *
+from peewee import DoesNotExist
 
 class LoginController(BaseController):
 

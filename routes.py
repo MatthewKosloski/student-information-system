@@ -21,3 +21,6 @@ STUDENT_REGISTER_ROUTE = 'student/register'
 
 # Instructor routes
 INSTRUCTOR_ROUTE = 'instructor'
+# INSTRUCTOR_PROFILE_ROUTE = 'instructor/profile'
+INSTRUCTOR_INPUT_GRADES_ROUTE = 'instructor/input-grades'
+
