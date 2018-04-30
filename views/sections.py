@@ -13,6 +13,7 @@ class SectionsView(BaseView):
 	def get_table(self, schedule):
 		table = Table([
 			'Course', 
+			'Term',
 			'Instructor',
 			'Day(s)',
 			'Room',
@@ -24,6 +25,7 @@ class SectionsView(BaseView):
 		for item in schedule:
 			table.add_row([
 				item['course'], 
+				item['term'],
 				item['instructor'],
 				item['meet_day'],
 				item['meet_location'],

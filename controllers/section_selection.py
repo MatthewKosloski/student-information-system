@@ -1,6 +1,7 @@
 from .base import BaseController
 from views import SectionSelectionView
 from models import Course, Section
+from utils import get_section_str
 from routes import *
 
 class SectionSelectionController(BaseController):
@@ -44,28 +45,13 @@ class SectionSelectionController(BaseController):
 		@return {dict}
 	'''
 	def process_instructor_sections(self, query):
-		sections = [self.get_section_str(section) for section in query]
+		sections = [get_section_str(section['name'], section['title'], section['number']) 
+		for section in query]
 		section_ids = [section['id'] for section in query]
 		return {
 			'sections': sections, 
 			'section_ids': section_ids
 		}
-
-	'''
-		Returns a formatted string that concatenates 
-		the course title and section number to the 
-		course name. (e.g., CPSC-3310-01 Intro to 
-		Object-oriented Programming)
-
-		@param section {dict}
-		@return {str}
-	'''
-	def get_section_str(self, section):
-		name = section['name']
-		number = section['number']
-		title = section['title']
-
-		return f'{name}-{number} {title}'
 
 	'''
 		Handle the user's choice and redirect
@@ -78,6 +64,9 @@ class SectionSelectionController(BaseController):
 		if choice == 1:
 			self.go_back()
 		else:
-			self.dispatch(INSTRUCTOR_ROSTER_SECTION_ROSTER_ROUTE, 
-				{'section_id': meta})
+			term_id = self.get_payload()['term_id']
+			self.dispatch(INSTRUCTOR_ROSTER_SECTION_ROSTER_ROUTE, {
+				'section_id': meta, 
+				'term_id': term_id
+			})
 			

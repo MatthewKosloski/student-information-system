@@ -30,9 +30,9 @@ class RosterView(BaseView):
 		return table
 		
 	def render(self, payload):
-		self.print_title('Class roster for CPSC-3310-01 (Spring 2017)')
+		self.print_title(payload['view_title'])
 		
-		print(self.get_roster_table(payload))
+		print(self.get_roster_table(payload['roster']))
 		print(self.get_choices_list())
 		print()
 

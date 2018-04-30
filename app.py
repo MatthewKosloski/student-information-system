@@ -1,5 +1,6 @@
 from router import Router
 from routes import *
+from models import *
 
 def main():
 	router = Router()
@@ -34,6 +35,7 @@ def main():
 
 	# Call '__init__' on the MainController
 	router.dispatch(HOME_ROUTE)
+
 
 if __name__ == '__main__':
 	main()

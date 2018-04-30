@@ -1,7 +1,8 @@
 from .base import BaseController
-from utils import get_letter_grade, get_percent_grade
 from models import Registration, Student
+from common_queries import get_term_name, get_section_name
 from views import RosterView
+import utils
 
 class RosterController(BaseController):
 
@@ -9,8 +10,15 @@ class RosterController(BaseController):
 		super().__init__(router, payload)
 
 		self.__view = RosterView(self)
-		self.__view.render(self.process_section_roster(
-			self.get_section_roster()))
+
+		section = get_section_name(payload['section_id'])
+		term = get_term_name(payload['term_id'])
+
+		self.__view.render({
+			'roster': self.process_section_roster(
+			self.get_section_roster()),
+			'view_title': f'Class roster for {section} ({term})'
+		})
 
 	'''
 		Queries the database for students
@@ -45,8 +53,8 @@ class RosterController(BaseController):
 				'first_name': student['first_name'],
 				'last_name': student['last_name'],
 				'id': str(student['id']),
-				'letter_grade': get_letter_grade(student['letter_grade']),
-				'percent_grade': get_percent_grade(student['percent_grade'])
+				'letter_grade': utils.get_letter_grade(student['letter_grade']),
+				'percent_grade': utils.get_percent_grade(student['percent_grade'])
 			})
 		return roster
 

@@ -1,6 +1,7 @@
 from .base import BaseController
 from views import InputGradesView
 from models import Section, Registration
+import utils
 
 class InputGradesController(BaseController):
 
@@ -14,11 +15,11 @@ class InputGradesController(BaseController):
 		instructor_id = self.get_payload()['id']
 
 		if self.instructor_has_section(instructor_id, section_id):
-			letter_grade = self.get_letter_grade_int(percent_grade)
+			letter_grade = utils.get_letter_grade_int(percent_grade)
 			has_updated = self.input_grade(student_id, section_id, percent_grade, letter_grade)
 			if has_updated:
 				self.__view.print_message(f'Student #{student_id} in section #{section_id} now ' + 
-					f'has grade {self.get_letter_grade(letter_grade)} ({self.format_percent(percent_grade)}).')
+					f'has grade {utils.get_letter_grade(letter_grade)} ({utils.format_percent(percent_grade)}).')
 			else:
 				self.__view.print_message('No grades have been updated.')
 		else:
@@ -58,40 +59,4 @@ class InputGradesController(BaseController):
 				Registration.section_id == section_id))
 
 		return update.execute()
-
-	'''
-		Converts the letter grade int
-		to a letter grade.
-
-		@param letter_grade_int {int}
-		@return {str}
-	'''
-	def get_letter_grade(self, letter_grade_int):
-		grades = ['A', 'B', 'C', 'D', 'F']
-		return grades[letter_grade_int - 1]
-
-	'''
-		Maps a percent to an integer
-		representing a letter grade (1 = A,
-		2 = B ... 5 = F).
-
-		@param percent_grade {float}
-		@return {int}
-	'''
-	def get_letter_grade_int(self, percent_grade):
-		if percent_grade >= 90:
-			return 1
-		elif percent_grade >= 80 and percent_grade <= 89:
-			return 2
-		elif percent_grade >= 70 and percent_grade <= 79:
-			return 3
-		elif percent_grade >= 60 and percent_grade <= 69:
-			return 4
-		else:
-			return 5
-
-	def format_percent(self, percent_grade):
-		return '{:.2f}%'.format(percent_grade)
-
-
 
