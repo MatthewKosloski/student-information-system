@@ -10,7 +10,10 @@ class NameSelectionView(BaseView):
 		self.__is_valid_name = status
 		
 	def render(self, payload):
-		self.print_title('Search by Course Name')
+		self.print_title(
+			'Search by Course Name',
+			'Browse sections by a course name (e.g., CPSC-3310).'
+		)
 		
 		while not self.__is_valid_name:
 
