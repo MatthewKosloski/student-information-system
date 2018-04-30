@@ -5,3 +5,11 @@ from .to_mm_dd_yyyy import to_mm_dd_yyyy
 from .format_phone_number import format_phone_number
 from .get_letter_grade import get_letter_grade
 from .get_percent_grade import get_percent_grade
+from .get_section_str import get_section_str
+from .format_name import format_name
+from .concat_start_end_time import concat_start_end_time
+from .concat_start_end_date import concat_start_end_date
+from .get_meet_day import get_meet_day
+from .get_section_type import get_section_type
+from .format_percent import format_percent
+from .get_letter_grade_int import get_letter_grade_int
