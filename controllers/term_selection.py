@@ -120,11 +120,11 @@ class TermSelectionController(BaseController):
 			if route == STUDENT_GRADES_SELECT_TERM_ROUTE or \
 			route == STUDENT_SCHEDULE_SELECT_TERM_ROUTE:
 				if route == STUDENT_SCHEDULE_SELECT_TERM_ROUTE:
-					self.dispatch(STUDENT_SCHEDULE_TERM_SCHEDULE_ROUTE, student_payload)
+					self.dispatch(STUDENT_SCHEDULE_TERM_SCHEDULE_ROUTE, payload)
 				elif route == STUDENT_GRADES_SELECT_TERM_ROUTE:
-					self.dispatch(STUDENT_GRADES_TERM_GRADES_ROUTE, student_payload)
+					self.dispatch(STUDENT_GRADES_TERM_GRADES_ROUTE, payload)
 			elif route == INSTRUCTOR_ROSTER_SELECT_TERM_ROUTE:
-				self.dispatch(INSTRUCTOR_ROSTER_SELECT_SECTION_ROUTE, instructor_payload)
+				self.dispatch(INSTRUCTOR_ROSTER_SELECT_SECTION_ROUTE, payload)
 			elif route == SEARCH_SELECT_TERM_ROUTE:
 				self.dispatch(SEARCH_RESULTS_ROUTE, payload)
 
