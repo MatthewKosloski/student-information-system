@@ -16,7 +16,13 @@ class InputGradesController(BaseController):
 
 		if self.instructor_has_section(instructor_id, section_id):
 			letter_grade = utils.get_letter_grade_int(percent_grade)
-			has_updated = self.input_grade(student_id, section_id, percent_grade, letter_grade)
+
+			has_updated = self.input_grade(
+				student_id, 
+				section_id, 
+				percent_grade, 
+				letter_grade)
+
 			if has_updated:
 				self.__view.print_message(f'Student #{student_id} in section #{section_id} now ' + 
 					f'has grade {utils.get_letter_grade(letter_grade)} ({utils.format_percent(percent_grade)}).')

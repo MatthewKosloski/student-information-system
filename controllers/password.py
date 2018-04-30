@@ -1,6 +1,7 @@
 from .base import BaseController
 from views import PasswordView
 from models import Student, Instructor
+from account_types import *
 
 class PasswordController(BaseController):
 
@@ -19,9 +20,9 @@ class PasswordController(BaseController):
 	'''
 	def get_model(self):
 		account_type = self.get_payload()['type']
-		if account_type == 'student':
+		if account_type == STUDENT_ACCOUNT_TYPE:
 			return Student
-		elif account_type == 'instructor':
+		elif account_type == INSTRUCTOR_ACCOUNT_TYPE:
 			return Instructor
 
 	'''

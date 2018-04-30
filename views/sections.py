@@ -7,19 +7,20 @@ class SectionsView(BaseView):
 		super().__init__(controller)
 
 		self.set_choices([
+			'Home',
 			'Back'
 		])
 		
 	def get_table(self, schedule):
 		table = Table([
-			'Course', 
-			'Term',
-			'Instructor',
-			'Day(s)',
-			'Room',
-			'Meet Time',
-			'Meet Date',
-			'Type'
+			'COURSE', 
+			'TERM',
+			'INSTRUCTOR',
+			'DAY(S)',
+			'ROOM',
+			'MEET TIME',
+			'MEET DATE',
+			'TYPE'
 		])
 
 		for item in schedule:

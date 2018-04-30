@@ -35,7 +35,7 @@ class SectionsController(BaseController):
 				sections = self.process_section_query(self.get_sections_by_course_name())
 				self.__view.render({
 					'sections': sections,
-					'view_title': f'Sections for course {self.get_payload()["course_name"]}.'
+					'view_title': f'Sections for course {self.get_payload()["course_name"]}'
 				})
 
 	'''
@@ -164,6 +164,8 @@ class SectionsController(BaseController):
 		the view in the ordered list menu.
 	'''
 	def on_choice_selection(self, choice, meta):
-		if choice == 1:
+		if choice == 1: # Home
+			self.go_home()
+		elif choice == 2: # Back
 			self.go_back()
 

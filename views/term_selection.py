@@ -7,7 +7,7 @@ class TermSelectionView(BaseView):
 		super().__init__(controller)
 
 	def render(self, payload):		
-		self.print_title('Select term')
+		self.print_title('Select Term')
 		'''
 			We call set_choices in here because
 			the list is dynamically populated by the
@@ -15,8 +15,8 @@ class TermSelectionView(BaseView):
 			for each choice. The meta values are sent to
 			the controller along with the choice integer.
 		'''
-		choices = ['Back'] + payload['terms']
-		choices_meta = [''] + payload['term_ids']
+		choices = ['Home', 'Back'] + payload['terms']
+		choices_meta = ['', ''] + payload['term_ids']
 		self.set_choices(choices, choices_meta)
 
 		print(self.get_choices_list())

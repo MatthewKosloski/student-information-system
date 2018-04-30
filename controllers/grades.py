@@ -11,7 +11,7 @@ class GradesController(BaseController):
 		self.__view = GradesView(self)
 		self.__view.render({
 			'grades': self.process_get_student_grades(self.get_student_grades()),
-			'view_title': f'Student grades for the {self.get_term_name()} semester.'
+			'view_title': f'{self.get_term_name()} Semester Grades'
 		})
 
 	'''

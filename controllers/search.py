@@ -21,6 +21,6 @@ class SearchController(BaseController):
 		if choice == 1:
 			self.go_back()
 		elif choice == 2:
-			self.dispatch(SEARCH_SELECT_TERM_ROUTE)
+			self.dispatch(SEARCH_SELECT_TERM_ROUTE, self.get_payload())
 		elif choice == 3:
-			self.dispatch(SEARCH_SELECT_NAME_ROUTE)
+			self.dispatch(SEARCH_SELECT_NAME_ROUTE, self.get_payload())

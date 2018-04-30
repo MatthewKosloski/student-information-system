@@ -3,6 +3,7 @@ from views import LoginView
 from models import Student, Instructor
 from routes import *
 from peewee import DoesNotExist
+from account_types import *
 
 class LoginController(BaseController):
 
@@ -23,9 +24,19 @@ class LoginController(BaseController):
 	def on_credentials_selection(self, account, username, password):
 
 		if account == 1:
-			self.login(Student, STUDENT_ROUTE, username, password)
+			self.login(
+				Student, 
+				STUDENT_ACCOUNT_TYPE, 
+				STUDENT_ROUTE, 
+				username, 
+				password)
 		elif account == 2:
-			self.login(Instructor, INSTRUCTOR_ROUTE, username, password)
+			self.login(
+				Instructor, 
+				INSTRUCTOR_ACCOUNT_TYPE, 
+				INSTRUCTOR_ROUTE, 
+				username, 
+				password)
 
 	'''
 		Checks if the user's password in the database
@@ -34,17 +45,21 @@ class LoginController(BaseController):
 		along.
 
 		@param model {BaseModel} Type of model to query
+		@param account_type {str} Type value to send with payload
 		@param route {str} Where to take user on successful login
 		@param username {str}
 		@param password {str}
 	'''
-	def login(self, model, route, username, password):
+	def login(self, model, account_type, route, username, password):
 		try:
 			db_account = self.get_account(model, username)
 
 			if db_account.password == password:
 				self.__view.set_login_status(True)
-				self.dispatch(route, {'id': db_account.id})
+				self.dispatch(route, {
+					'type': account_type,
+					'id': db_account.id
+				})
 			else:
 				self.__view.print_message('Incorrect password!')
 

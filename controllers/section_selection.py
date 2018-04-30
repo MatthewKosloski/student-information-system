@@ -64,9 +64,11 @@ class SectionSelectionController(BaseController):
 		if choice == 1:
 			self.go_back()
 		else:
-			term_id = self.get_payload()['term_id']
+			payload = self.get_payload()
 			self.dispatch(INSTRUCTOR_ROSTER_SECTION_ROSTER_ROUTE, {
+				'type': payload['type'],
+				'id': payload['id'],
+				'term_id': payload['term_id'],
 				'section_id': meta, 
-				'term_id': term_id
 			})
 			
