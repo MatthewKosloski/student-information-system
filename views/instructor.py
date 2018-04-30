@@ -6,9 +6,9 @@ class InstructorView(BaseView):
 		super().__init__(controller)
 
 		self.set_choices([
-			# 'View Profile',
 			'Change Password',
-			'Input Grades (incomplete)',
+			'Input Grades',
+			'View Section Roster',
 			'Logout'
 		])
 		

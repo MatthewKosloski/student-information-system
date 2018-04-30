@@ -1,7 +1,7 @@
 from .base import BaseController
+from utils import get_letter_grade, get_percent_grade
 from views import GradesView
 from models import *
-
 
 class GradesController(BaseController):
 
@@ -81,43 +81,10 @@ class GradesController(BaseController):
 		for item in grades:
 			simplified_grades.append({
 				'course': f'{item["name"]} {item["title"]}',
-				'grade': self.get_letter_grade(item['letter_grade']),
-				'percent': self.get_percent_grade(item['percent_grade'])
+				'grade': get_letter_grade(item['letter_grade']),
+				'percent': get_percent_grade(item['percent_grade'])
 			})
 		return simplified_grades
-
-
-	'''
-		Maps an integer to a letter grade and
-		returns a hyphen if the parameter is
-		None.
-
-		@param {int|None} Integer to be converted
-		to a letter
-		@return {str} Converted value  
-	'''
-	def get_letter_grade(self, integer):
-		if integer != None:
-			letters = ['A', 'B', 'C', 'D', 'F']
-			return letters[integer - 1]
-		else: 
-			return '-'
-
-	'''
-		Appends a percent sign
-		at the end of the parameter. If
-		the parameter is None, return a
-		bunch of hyphens.
-
-		@param {float|None} Float to be appended
-		with a percent sign
-		@return {str} Converted value
-	'''
-	def get_percent_grade(self, float):
-		if float != None:
-			return str(float) + '%'
-		else: 
-			return '--.-%'
 
 	'''
 		Handle the user's choice and redirect
@@ -130,5 +97,3 @@ class GradesController(BaseController):
 		student_id = self.get_payload()
 		if choice == 1:
 			self.go_back()
-
-

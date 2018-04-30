@@ -12,3 +12,5 @@ from .name_selection import NameSelectionView
 from .register import RegisterView
 from .instructor import InstructorView
 from .input_grades import InputGradesView
+from .section_selection import SectionSelectionView
+from .roster import RosterView

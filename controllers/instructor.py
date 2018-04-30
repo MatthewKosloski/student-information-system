@@ -30,13 +30,17 @@ class InstructorController(BaseController):
 	'''
 	def on_choice_selection(self, choice, meta):
 		instructor_id = self.get_payload()['id']
+		
 		instructor_payload = {'type': 'instructor', 'id': instructor_id}
+		instructor_id_payload = {'id': instructor_id}
 
 		if choice == 1: # Change Password
 			self.dispatch(CHANGE_PASSWORD_ROUTE, instructor_payload)
 		elif choice == 2: # Input Grades
-			self.dispatch(INSTRUCTOR_INPUT_GRADES_ROUTE, {'id': instructor_id})
-		elif choice == 3: # Logout
+			self.dispatch(INSTRUCTOR_INPUT_GRADES_ROUTE, instructor_id_payload)
+		elif choice == 3: # View Section Roster
+			self.dispatch(INSTRUCTOR_ROSTER_SELECT_TERM_ROUTE, instructor_id_payload)
+		elif choice == 4: # Logout
 			self.dispatch(HOME_ROUTE)
 
 

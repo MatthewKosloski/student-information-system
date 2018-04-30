@@ -23,4 +23,6 @@ STUDENT_REGISTER_ROUTE = 'student/register'
 INSTRUCTOR_ROUTE = 'instructor'
 # INSTRUCTOR_PROFILE_ROUTE = 'instructor/profile'
 INSTRUCTOR_INPUT_GRADES_ROUTE = 'instructor/input-grades'
-
+INSTRUCTOR_ROSTER_SELECT_TERM_ROUTE = 'instructor/roster/select-term'
+INSTRUCTOR_ROSTER_SELECT_SECTION_ROUTE = 'instructor/roster/select-section'
+INSTRUCTOR_ROSTER_SECTION_ROSTER_ROUTE = 'instructor/roster/section-roster'
