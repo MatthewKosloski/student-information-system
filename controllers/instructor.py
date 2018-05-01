@@ -17,7 +17,14 @@ class InstructorController(BaseController):
 		the view in the ordered list menu.
 	'''
 	def on_choice_selection(self, choice):
+		instructor_id = self.get_payload()
 		if choice == 1:
-			self.go_back()
+			self.dispatch(INSTRUCTOR_PROFILE_ROUTE, {'type': 'instructor', 'id': instructor_id})
+		elif choice == 2:
+			self.dispatch(CHANGE_PASSWORD_ROUTE, {'type': 'instructor', 'id': instructor_id})
+		elif choice == 3:
+			self.dispatch(INSTRUCTOR_INPUT_GRADES_ROUTE)
+		elif choice == 4:
+			self.dispatch(INSTRUCTOR_SCHEDULE_ROUTE)
 		elif choice == 5:
 			self.dispatch(INSTRUCTOR_STUDENT_GRADES_ROUTE)

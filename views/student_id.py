@@ -1,6 +1,6 @@
 from .base import BaseView
 
-class InstructorStudentGradesView(BaseView):
+class StudentIDView(BaseView):
 
 	def __init__(self, controller):
 		super().__init__(controller)

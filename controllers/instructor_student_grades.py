@@ -1,4 +1,4 @@
-from views import InstructorStudentGradesView
+from views import StudentIDView
 from .base import BaseController
 from routes import *
 
@@ -7,7 +7,7 @@ class InstructorStudentGradesController(BaseController):
 	def __init__(self, router, payload):
 		super().__init__(router, payload)
 
-		self.__view = InstructorStudentGradesView(self)
+		self.__view = StudentIDView(self)
 		self.__view.render(payload)
 
 	def show_student_grades(self, student_id):

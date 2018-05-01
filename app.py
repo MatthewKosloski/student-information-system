@@ -20,6 +20,10 @@ def main():
 	# Instructor routes
 	router.add(INSTRUCTOR_ROUTE, 'InstructorController')
 	router.add(INSTRUCTOR_STUDENT_GRADES_ROUTE, 'InstructorStudentGradesController')
+	router.add(INSTRUCTOR_PROFILE_ROUTE, 'ProfileController')
+	router.add(INSTRUCTOR_SCHEDULE_ROUTE, 'ScheduleController')
+	router.add(INSTRUCTOR_INPUT_GRADES_ROUTE, 'InputGradesController')
+	router.add(INSTRUCTOR_STUDENT_GRADES_ROUTE, 'GradesController')
 
 	# Call '__init__' on the MainController
 	router.dispatch(HOME_ROUTE)

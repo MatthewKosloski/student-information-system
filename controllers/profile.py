@@ -1,7 +1,8 @@
 from .base import BaseController
 from views import ProfileView
 from routes import HOME_ROUTE
-from models import Student
+from models import Student, Instructor
+
 
 class ProfileController(BaseController):
 
@@ -22,6 +23,8 @@ class ProfileController(BaseController):
 		account_type = self.get_payload()['type']
 		if account_type == 'student':
 			return Student
+		elif account_type == 'instructor':
+			return Instructor
 
 	'''
 		Queries the database and returns a dictionary
