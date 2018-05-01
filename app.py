@@ -32,6 +32,9 @@ def main():
 	router.add(INSTRUCTOR_ROSTER_SELECT_SECTION_ROUTE, 'SectionSelectionController')
 	router.add(INSTRUCTOR_ROSTER_SECTION_ROSTER_ROUTE, 'RosterController')
 
+	# Registrar routes
+	router.add(REGISTRAR_ROUTE, 'RegistrarController')
+
 	# Call '__init__' on the MainController
 	router.dispatch(HOME_ROUTE)
 

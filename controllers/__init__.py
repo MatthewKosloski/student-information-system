@@ -14,3 +14,4 @@ from .instructor import InstructorController
 from .input_grades import InputGradesController
 from .section_selection import SectionSelectionController
 from .roster import RosterController
+from .registrar import RegistrarController

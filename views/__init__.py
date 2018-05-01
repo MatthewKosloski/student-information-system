@@ -14,3 +14,4 @@ from .instructor import InstructorView
 from .input_grades import InputGradesView
 from .section_selection import SectionSelectionView
 from .roster import RosterView
+from .registrar import RegistrarView
