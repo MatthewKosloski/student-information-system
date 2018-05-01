@@ -13,7 +13,7 @@ class InstructorView(BaseView):
 		])
 		
 	def render(self, payload):
-		self.print_title(f'Welcome, {payload["username"]} ({payload["full_name"]})!')
+		self.print_title(self.get_greeting(payload['username'], payload['full_name']))
 		
 		print(self.get_choices_list())
 		print()
