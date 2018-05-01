@@ -28,4 +28,5 @@ INSTRUCTOR_ROSTER_SELECT_SECTION_ROUTE = 'instructor/roster/select-section'
 INSTRUCTOR_ROSTER_SECTION_ROSTER_ROUTE = 'instructor/roster/section-roster'
 
 REGISTRAR_ROUTE = 'registrar'
-REGISTRAR_PROFILE_ROUTE = 'registrar/profile'
+REGISTRAR_ENROLL_ROUTE = 'registrar/enroll'
+REGISRTRAR_DROP_ROUTE = 'registrar/drop'

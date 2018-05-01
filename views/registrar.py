@@ -7,13 +7,13 @@ class RegistrarView(BaseView):
 
 		self.set_choices([
 			'Change Password',
-			'Enroll student',
+			'Enroll Student',
 			'Drop Student',
 			'Logout'
 		])
 		
 	def render(self, payload):
-		self.print_title(f'Welcome, {payload["username"]} ({payload["full_name"]}!')
+		self.print_title(f'Welcome, {payload["username"]} ({payload["full_name"]})!')
 		
 		print(self.get_choices_list())
 		print()

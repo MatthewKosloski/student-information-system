@@ -30,15 +30,16 @@ class RegistrarController(BaseController):
 		@param choice {int} Number corresponding to
 		the view in the ordered list menu.
 	'''
-	def on_choice_selection(self, choice):
-		registrar_id = self.get_payload()
+	def on_choice_selection(self, choice, meta):
+		registrar_id = self.get_payload()['id']
+		
+		registrar_payload = {'type': REGISTRAR_ACCOUNT_TYPE, 'id': registrar_id}
+
 		if choice == 1: # Change Password
-			# specify type so we can reuse profile module
 			self.dispatch(CHANGE_PASSWORD_ROUTE, registrar_payload)
 		elif choice == 2: # Enroll Student
-			#pecify type so we can reuse password module
-			self.dispatch()
+			self.dispatch(REGISTRAR_ENROLL_ROUTE, registrar_payload)
 		elif choice == 3: # Drop Student
-			self.dispatch(SEARCH_ROUTE, registrar_payload)
+			self.dispatch(REGISTRAR_ROSTER_SELECT_TERM_ROUTE, registrar_payload)
 		elif choice == 4: # Logout
-			self.dispatch('HOME_ROUTE')
+			self.dispatch(HOME_ROUTE)

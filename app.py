@@ -33,8 +33,9 @@ def main():
 	router.add(INSTRUCTOR_ROSTER_SECTION_ROSTER_ROUTE, 'RosterController')
 
 	router.add(REGISTRAR_ROUTE, 'RegistrarController')
-	router.add(REGISTRAR_PROFILE_ROUTE, 'ProfileController')
-	#router.add('/registrar/loginii', 'LoginiiController'})
+	router.add(REGISTRAR_ENROLL_ROUTE, 'registrar/enroll')
+	#router.add(REGISRTRAR_DROP_ROUTE, 'registrar/drop')
+	
 
 	# Call '__init__' on the MainController
 	router.dispatch(HOME_ROUTE)

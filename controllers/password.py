@@ -22,8 +22,8 @@ class PasswordController(BaseController):
 		account_type = self.get_payload()['type']
 		if account_type == STUDENT_ACCOUNT_TYPE:
 			return Student
-		elif account_type == 'registrar':
-			return registrar
+		elif account_type == REGISTRAR_ACCOUNT_TYPE:
+			return Registrar
 		elif account_type == INSTRUCTOR_ACCOUNT_TYPE:
 			return Instructor
 
