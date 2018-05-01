@@ -7,12 +7,15 @@ from routes import *
 
 class RegistrarController(BaseController):
 
-	def __init__(self, params, payload):
-		super().__init__(params, payload)
+	def __init__(self, router, payload):
+		super().__init__(router, payload)
 
 		self.__view = RegistrarView(self)
-		self.__view.render(payload)
 
+		try:
+			self.__view.render(get_username_and_full_name(Registrar, payload['id']))
+		except ValueError as e:
+			self.__view.print_message(e)
 	'''
 		Get the username, firstname, and lastname
 		from the registrar.
@@ -21,24 +24,6 @@ class RegistrarController(BaseController):
 		@return {dict} A dictionary containing the username
 		and full name of the user to be displayed in the
 		registrar view.
-	'''
-	def get_username_and_full_name(self, id):
-		try:
-			query = (Registrar
-				.select(Registrar.username, 
-					Registrar.first_name, 
-					Registrar.last_name)
-				.where(Registrar.id == id)
-				.get())
-
-			return {
-				'username': query.username,
-				'full_name': f'{query.first_name} {query.last_name}'
-			}
-		except DoesNotExist:
-			self.__view.print_message('Account does not exist.')
-
-	'''
 		Handle the user's choice and redirect
 		them to the appropriate view.
 		
@@ -49,11 +34,11 @@ class RegistrarController(BaseController):
 		registrar_id = self.get_payload()
 		if choice == 1: # View profile
 			# specify type so we can reuse profile module
-			self.dispatch(REGISTRAR_PROFILE_ROUTE, student_payload)
-		elif choice == 2: # view courses
+			self.dispatch(REGISTRAR_PROFILE_ROUTE, registrar_payload)
+		elif choice == 2: # change password
 			#pecify type so we can reuse password module
-			self.dispatch('/change-password', {'type': 'student', 'id': registrar_id})
-		elif choice == 3:
-			self.dispatch('/student/grades', registrar_id)
+			self.dispatch(CHANGE_PASSWORD_ROUTE, registrar_payload)
+		elif choice == 3: # search for sections
+			self.dispatch(SEARCH_ROUTE, registrar_payload)
 		elif choice == 4: # Logout
 			self.dispatch('HOME_ROUTE')

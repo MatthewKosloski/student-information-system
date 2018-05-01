@@ -39,10 +39,10 @@ class LoginController(BaseController):
 				password)
 		elif account == 3:
 			self.login(
-				Registrar,
-				REGISTRAR_ACCOUNT_TYPE,
-				REGISTRAR_ROUTE,
-				username,
+				Registrar, 
+				REGISTRAR_ACCOUNT_TYPE, 
+				REGISTRAR_ROUTE, 
+				username, 
 				password)
 
 	'''
@@ -94,41 +94,3 @@ class LoginController(BaseController):
 		except DoesNotExist:
 			raise ValueError(('Either the username is incorrect' +
 				' or the account doesn\'t exist!'))
-	'''
-		Checks if the user's password in the database
-		matches the one provided. If so, they are redirected
-		to the student view and the student's ID is passed
-		along.
-
-		@param account {int} Type of account selected from view
-		@param username {str} Username of the user
-		@param password {str} Password to compare to the one in db
-	'''
-	def login(self, account, username, password):
-
-		if account == 1: # student account
-			try:
-				db_account = self.get_account(Student, username)
-
-				if db_account.password == password:
-					self.__view.set_login_status(True)
-					self.dispatch('/student', db_account.id)
-				else:
-					self.__view.print_message('Incorrect password!')
-
-			except ValueError as e:
-				self.__view.print_message(e)
-		elif account == 2: # instructor account
-			# Not implemented yet. Temporary redirect
-			self.dispatch('/')
-		elif account == 3:
-			try:
-				db_account = self.get_account(Registrar, username)
-
-				if db_account.password == password:
-					self.__view.set_login_status(True)
-					self.dispatch('/registrar', db_account.id)
-				else:
-					self.__view.print_message('Incorrect password!')
-			except ValueError as e:
-				self.__view.print_message(e)

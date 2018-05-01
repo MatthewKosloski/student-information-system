@@ -6,14 +6,15 @@ class RegistrarView(BaseView):
 		super().__init__(controller)
 
 		self.set_choices([
-			'View Profile',
+			'Change Password',
+			'Enroll student',
+			'Drop Student',
 			'Logout'
 		])
 		
 	def render(self, payload):
-		print()
-		print(f'Welcome, {payload["username"]} ({payload["full_name"]})!')
-		print()
+		self.print_title(f'Welcome, {payload["username"]} ({payload["full_name"]}!')
+		
 		print(self.get_choices_list())
 		print()
 		self.choice_prompt()
