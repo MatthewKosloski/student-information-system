@@ -174,4 +174,14 @@ class BaseView():
 	def print_message(self, message):
 		print(message)
 
+	'''
+		Returns a friendly greeting string.
+
+		@param username {str}
+		@param full_name {str}
+		@return {str}
+	'''
+	def get_greeting(self, username, full_name):
+		return f'Welcome, {username} ({full_name})!'
+
 

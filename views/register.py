@@ -10,8 +10,8 @@ class RegisterView(BaseView):
 		])
 		
 	def render(self, payload):
-		self.print_title('Register for Sections')
-		
+		self.print_title(payload['view_title'])
+
 		another = 'y'
 
 		while another.lower() == 'y':
@@ -19,9 +19,9 @@ class RegisterView(BaseView):
 			section_id = self.get_non_empty_string('Section ID: ', 
 				'Please enter a valid section ID.')
 
-			self.get_controller().on_id_selection(section_id, 
-				payload['student_id'])
+			self.get_controller().on_id_selection(section_id)
 
-			another = self.get_y_or_n('Register for another section? (y/n): ')
+			another = self.get_y_or_n(
+				'Register the student for another section? (y/n): ')
 
-		self.get_controller().go_back()
+		self.get_controller().go_home()

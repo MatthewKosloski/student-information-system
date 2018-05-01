@@ -1,6 +1,6 @@
 from .base import BaseController
 from views import LoginView
-from models import Student, Instructor
+from models import Student, Instructor, Registrar
 from routes import *
 from peewee import DoesNotExist
 from account_types import *
@@ -37,6 +37,14 @@ class LoginController(BaseController):
 				INSTRUCTOR_ROUTE, 
 				username, 
 				password)
+		elif account == 3:
+			self.login(
+				Registrar,
+				REGISTRAR_ACCOUNT_TYPE,
+				REGISTRAR_ROUTE,
+				username,
+				password
+			)
 
 	'''
 		Checks if the user's password in the database

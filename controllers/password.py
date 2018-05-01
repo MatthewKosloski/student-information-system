@@ -1,6 +1,6 @@
 from .base import BaseController
 from views import PasswordView
-from models import Student, Instructor
+from models import Student, Instructor, Registrar
 from account_types import *
 
 class PasswordController(BaseController):
@@ -24,6 +24,8 @@ class PasswordController(BaseController):
 			return Student
 		elif account_type == INSTRUCTOR_ACCOUNT_TYPE:
 			return Instructor
+		elif account_type == REGISTRAR_ACCOUNT_TYPE:
+			return Registrar
 
 	'''
 		Gets the user's current password from the
