@@ -135,26 +135,32 @@ class SectionsController(BaseController):
 		return query
 
 	'''
-		Refines the student schedule results from
-		the database.
+		Processes the section query
+		before sending it off to the
+		appropriate view.
 
-		@param schedule {dict}
+		@param sections {dict}
 		@return processed_schedule {list}
 	'''
-	def process_section_query(self, schedule):
-		processed_schedule = []
-		for item in schedule:
-			processed_schedule.append({
+	def process_section_query(self, sections):
+		processed_sections = []
+		for item in sections:
+			processed_sections.append({
 				'meet_day': utils.get_meet_day(item['meet_day']),
-				'meet_time': utils.concat_start_end_time(item['meet_time_start'], item['meet_time_end']),
-				'meet_date': utils.concat_start_end_date(item['start_date'], item['end_date']),
-				'section_type': utils.get_section_type(item['type']),
-				'course': utils.get_section_str(item['name'], item['title'], item['number']),
-				'instructor': utils.format_name(item['first_name'], item['last_name']),
+				'meet_time': utils.concat_start_end_time(
+					item['meet_time_start'], item['meet_time_end']),
+				'meet_date': utils.concat_start_end_date(
+					item['start_date'], item['end_date']),
+				'section_type': utils.get_section_type(
+					item['type']),
+				'course': utils.get_section_str(
+					item['name'], item['title'], item['number']),
+				'instructor': utils.format_name(
+					item['first_name'], item['last_name'], True),
 				'meet_location': item['meet_location'],
 				'term': item['term']
 			})
-		return processed_schedule
+		return processed_sections
 
 	'''
 		Handle the user's choice and redirect

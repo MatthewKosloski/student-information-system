@@ -11,6 +11,12 @@ class InputGradesController(BaseController):
 		self.__view = InputGradesView(self)
 		self.__view.render(payload)
 	
+	'''
+		Consumes the section id, student id, and percent
+		grade inputted by the user and tries to update
+		a record in the registration table by changing the
+		percent grade and letter grade fields.
+	'''
 	def on_details_selection(self, section_id, student_id, percent_grade):
 		instructor_id = self.get_payload()['id']
 

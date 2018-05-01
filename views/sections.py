@@ -11,7 +11,12 @@ class SectionsView(BaseView):
 			'Back'
 		])
 		
-	def get_table(self, schedule):
+	'''
+		Displays a table of sections.
+
+		@param schedule {dict}
+	'''
+	def get_sections_table(self, schedule):
 		table = Table([
 			'COURSE', 
 			'TERM',
@@ -40,7 +45,7 @@ class SectionsView(BaseView):
 	def render(self, payload):
 		self.print_title(payload['view_title'])
 
-		print(self.get_table(payload['sections']))
+		print(self.get_sections_table(payload['sections']))
 		print()
 		print(self.get_choices_list())
 		print()

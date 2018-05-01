@@ -59,6 +59,10 @@ class Table:
 		longest_column_field_len = len(max(fields, key=len))
 		return max(column_len, longest_column_field_len)
 
+	'''
+		Displays the contents of the table
+		@return output {str}
+	'''
 	def __str__(self):
 		output = self.row_str(self.__columns)
 		output += '\n'

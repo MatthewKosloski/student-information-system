@@ -1,6 +1,6 @@
 '''
 	Formats a U.S., 10-digit phone number
-	by adding hypthens in between the numbers.
+	by adding hyphens in between the numbers.
 
 	@param phone_number {str} 10-digit phone number
 	@return {str}

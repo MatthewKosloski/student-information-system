@@ -10,6 +10,13 @@ class RosterView(BaseView):
 			'Back'
 		])
 
+	'''
+		Creates a table from the data
+		in the payload.
+
+		@param payload {dict}
+		@return table {Table}
+	'''
 	def get_roster_table(self, payload):
 		table = Table([
 			'LAST NAME', 

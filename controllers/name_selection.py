@@ -24,6 +24,12 @@ class NameSelectionController(BaseController):
 			.where(Course.name == name))
 		return query.exists()
 
+	'''
+		Takes the inputted course name and
+		navigates the user to the SectionsView.
+		
+		@param name {str}
+	'''
 	def on_name_selection(self, name):
 		if self.is_valid_name(name):
 			self.__view.set_name_status(True)

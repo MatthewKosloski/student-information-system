@@ -10,6 +10,13 @@ class ProfileView(BaseView):
 			'Back'
 		])
 
+	'''
+		Creates a table from the provided
+		payload data.
+
+		@payload {dict}
+		@return {Table}
+	'''
 	def get_profile_table(self, payload):
 		table = Table(['FULL NAME', 'STUDENT ID', 'SEX'])
 		table.add_row([payload['full_name'], payload['id'], payload['sex']])

@@ -26,6 +26,8 @@ class RosterController(BaseController):
 		The student's first name, last name,
 		id number, letter grade, and percent
 		grade are returned.
+
+		@return query {dict}
 	'''
 	def get_section_roster(self):
 		section_id = self.get_payload()['section_id']

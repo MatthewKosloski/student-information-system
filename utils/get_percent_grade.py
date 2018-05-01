@@ -4,7 +4,7 @@
 	the parameter is None, return a
 	bunch of hyphens.
 
-	@param {float|None} Float to be appended
+	@param float {float|None} Float to be appended
 	with a percent sign
 	@return {str} Converted value
 '''

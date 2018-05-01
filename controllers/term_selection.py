@@ -21,19 +21,31 @@ class TermSelectionController(BaseController):
 		elif route == SEARCH_SELECT_TERM_ROUTE:
 			self.render_all_terms()
 
+	'''
+		Renders the view with a list of
+		the student's registration terms.
+	'''
 	def render_student_terms(self):
 		self.__view.render(self.process_terms(self.get_student_terms()))
 
+	'''
+		Renders the view with a list of
+		the instructor's terms.
+	'''
 	def render_instructor_terms(self):
 		self.__view.render(self.process_terms(self.get_instructor_terms()))
 
+	'''
+		Renders the view with a list of
+		all existings terms.
+	'''
 	def render_all_terms(self):
 		self.__view.render(self.process_terms(self.get_all_terms()))
 
 	'''
 		Queries the database for the ID and title
 		of all the student's registration terms 
-		(e.g., 'Fall 2018')
+		(e.g., 'Fall 2018').
 
 		@return {dict}
 	'''

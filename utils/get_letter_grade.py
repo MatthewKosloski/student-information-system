@@ -3,7 +3,7 @@
 	returns a hyphen if the parameter is
 	None.
 
-	@param {int|None} Integer to be converted
+	@param integer {int|None} Integer to be converted
 	to a letter
 	@return {str} Converted value  
 '''

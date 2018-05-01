@@ -13,3 +13,4 @@ from .get_meet_day import get_meet_day
 from .get_section_type import get_section_type
 from .format_percent import format_percent
 from .get_letter_grade_int import get_letter_grade_int
+from .get_sex import get_sex

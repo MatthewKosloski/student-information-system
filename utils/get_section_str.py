@@ -6,7 +6,7 @@ from .truncate_str import truncate_str
 
 	@param name {str}
 	@param title {str}
-	@param number {str}
+	@param number {int}
 	@return {str}
 '''
 def get_section_str(name, title, number):

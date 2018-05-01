@@ -6,7 +6,7 @@ import utils
 
 	@param start_date {date}
 	@param end_date {date}
-	@param {str}
+	@return {str}
 '''
 def concat_start_end_date(start_date, end_date):
 	start_formatted = utils.to_mm_dd_yyyy(start_date)
