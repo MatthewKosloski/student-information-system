@@ -1,12 +1,9 @@
 from .base import BaseController
 from views import ProfileView
-<<<<<<< HEAD
 from models import Registrar
-=======
 from routes import HOME_ROUTE
->>>>>>> 737d575a946879cf925508314e57c938849476ed
 from models import Student
-import utils
+from utils import to_mm_dd_yyyy, format_phone_number
 
 class ProfileController(BaseController):
 
@@ -72,7 +69,6 @@ class ProfileController(BaseController):
 		@param query {Student}
 		return {dict}
 	'''
-<<<<<<< HEAD
 	def go_back(self):
 		account_type = self.get_payload()['type']
 		account_id = self.get_payload()['id']
@@ -82,7 +78,6 @@ class ProfileController(BaseController):
 			self.dispatch('/registrar', account_id)
 		else:
 			self.dispatch('/')
-=======
 	def process_get_student_profile(self, query):
 		profile = []
 		for student in query:
@@ -101,8 +96,6 @@ class ProfileController(BaseController):
 				'email': student['email']
 			})
 		return profile[0]
->>>>>>> 737d575a946879cf925508314e57c938849476ed
-
 	'''
 		Handle the user's choice and redirect
 		them to the appropriate view.

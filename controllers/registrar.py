@@ -1,6 +1,9 @@
 from .base import BaseController
 from views import RegistrarView
 from models import Registrar
+from common_queries import get_username_and_full_name
+from account_types import REGISTRAR_ACCOUNT_TYPE
+from routes import *
 
 class RegistrarController(BaseController):
 
@@ -8,8 +11,7 @@ class RegistrarController(BaseController):
 		super().__init__(params, payload)
 
 		self.__view = RegistrarView(self)
-
-		self.__view.render(self.get_username_and_full_name(payload))
+		self.__view.render(payload)
 
 	'''
 		Get the username, firstname, and lastname
@@ -47,11 +49,11 @@ class RegistrarController(BaseController):
 		registrar_id = self.get_payload()
 		if choice == 1: # View profile
 			# specify type so we can reuse profile module
-			self.dispatch('/registrar/profile', {'type': 'registrar', 'id': registrar_id})
+			self.dispatch(REGISTRAR_PROFILE_ROUTE, student_payload)
 		elif choice == 2: # view courses
-		# specify type so we can reuse password module
+			#pecify type so we can reuse password module
 			self.dispatch('/change-password', {'type': 'student', 'id': registrar_id})
 		elif choice == 3:
 			self.dispatch('/student/grades', registrar_id)
 		elif choice == 4: # Logout
-			self.dispatch('/')
+			self.dispatch('HOME_ROUTE')

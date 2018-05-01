@@ -39,6 +39,8 @@ class BaseController():
 			self.dispatch(STUDENT_ROUTE, payload)
 		elif account_type == INSTRUCTOR_ACCOUNT_TYPE:
 			self.dispatch(INSTRUCTOR_ROUTE, payload)
+		elif account_type == REGISTRAR_ACCOUNT_TYPE:
+			self.dispatch(REGISTRAR_ROUTE, payload)
 
 	'''
 		Returns the payload provided

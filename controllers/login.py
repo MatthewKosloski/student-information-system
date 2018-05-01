@@ -1,13 +1,6 @@
-<<<<<<< HEAD
-from peewee import *
-from views import LoginView
-from models import Student
-from models import Registrar
-=======
->>>>>>> 737d575a946879cf925508314e57c938849476ed
 from .base import BaseController
 from views import LoginView
-from models import Student, Instructor
+from models import Student, Instructor, Registrar
 from routes import *
 from peewee import DoesNotExist
 from account_types import *
@@ -43,6 +36,13 @@ class LoginController(BaseController):
 				INSTRUCTOR_ACCOUNT_TYPE, 
 				INSTRUCTOR_ROUTE, 
 				username, 
+				password)
+		elif account == 3:
+			self.login(
+				Registrar,
+				REGISTRAR_ACCOUNT_TYPE,
+				REGISTRAR_ROUTE,
+				username,
 				password)
 
 	'''
@@ -94,8 +94,6 @@ class LoginController(BaseController):
 		except DoesNotExist:
 			raise ValueError(('Either the username is incorrect' +
 				' or the account doesn\'t exist!'))
-
-<<<<<<< HEAD
 	'''
 		Checks if the user's password in the database
 		matches the one provided. If so, they are redirected
@@ -126,8 +124,6 @@ class LoginController(BaseController):
 		elif account == 3:
 			try:
 				db_account = self.get_account(Registrar, username)
-=======
->>>>>>> 737d575a946879cf925508314e57c938849476ed
 
 				if db_account.password == password:
 					self.__view.set_login_status(True)

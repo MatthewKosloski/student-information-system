@@ -1,2 +1,3 @@
 STUDENT_ACCOUNT_TYPE = 'student'
 INSTRUCTOR_ACCOUNT_TYPE = 'instructor'
+REGISTRAR_ACCOUNT_TYPE = 'registrar'

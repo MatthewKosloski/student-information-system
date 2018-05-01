@@ -7,7 +7,6 @@ class RegistrarView(BaseView):
 
 		self.set_choices([
 			'View Profile',
-			'View Student',
 			'Logout'
 		])
 		

@@ -32,9 +32,9 @@ def main():
 	router.add(INSTRUCTOR_ROSTER_SELECT_SECTION_ROUTE, 'SectionSelectionController')
 	router.add(INSTRUCTOR_ROSTER_SECTION_ROSTER_ROUTE, 'RosterController')
 
-	router.add('/registrar', {'controller': 'RegistrarController'})
-	router.add('/registrar/profile', {'controller': 'ProfileController'})
-	router.add('/registrar/loginii', {'controller': 'LoginiiController'})
+	router.add(REGISTRAR_ROUTE, 'RegistrarController')
+	router.add(REGISTRAR_PROFILE_ROUTE, 'ProfileController')
+	#router.add('/registrar/loginii', 'LoginiiController'})
 
 	# Call '__init__' on the MainController
 	router.dispatch(HOME_ROUTE)

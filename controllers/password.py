@@ -1,12 +1,7 @@
 from .base import BaseController
 from views import PasswordView
-<<<<<<< HEAD
-from models import Registrar
-from models import Student
-=======
-from models import Student, Instructor
+from models import Student, Instructor, Registrar
 from account_types import *
->>>>>>> 737d575a946879cf925508314e57c938849476ed
 
 class PasswordController(BaseController):
 
@@ -27,14 +22,11 @@ class PasswordController(BaseController):
 		account_type = self.get_payload()['type']
 		if account_type == STUDENT_ACCOUNT_TYPE:
 			return Student
-<<<<<<< HEAD
 		elif account_type == 'registrar':
 			return registrar
-=======
 		elif account_type == INSTRUCTOR_ACCOUNT_TYPE:
 			return Instructor
 
->>>>>>> 737d575a946879cf925508314e57c938849476ed
 	'''
 		Gets the user's current password from the
 		database. Query is based on the user's id,

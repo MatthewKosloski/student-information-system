@@ -26,3 +26,6 @@ INSTRUCTOR_INPUT_GRADES_ROUTE = 'instructor/input-grades'
 INSTRUCTOR_ROSTER_SELECT_TERM_ROUTE = 'instructor/roster/select-term'
 INSTRUCTOR_ROSTER_SELECT_SECTION_ROUTE = 'instructor/roster/select-section'
 INSTRUCTOR_ROSTER_SECTION_ROSTER_ROUTE = 'instructor/roster/section-roster'
+
+REGISTRAR_ROUTE = 'registrar'
+REGISTRAR_PROFILE_ROUTE = 'registrar/profile'

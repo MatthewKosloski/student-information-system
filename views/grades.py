@@ -10,17 +10,15 @@ class GradesView(BaseView):
 			'Back'
 		])
 
-<<<<<<< HEAD
 	def get_course_table(self, grades):
 		table = BeautifulTable()
 		table.column_headers = ['Course', 'Grade', 'Percent']
 		table.column_alignments['Course'] = BeautifulTable.ALIGN_LEFT
 		table.column_alignments['Grade'] = BeautifulTable.ALIGN_LEFT
 		table.column_alignments['Percent'] = BeautifulTable.ALIGN_LEFT
-=======
+
 	def get_grades_table(self, grades):
 		table = Table(['Course', 'Grade', 'Percent'])
->>>>>>> 737d575a946879cf925508314e57c938849476ed
 
 		for item in grades:
 			table.add_row([
