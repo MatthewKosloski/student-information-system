@@ -1,3 +1,6 @@
+from routes import *
+from account_types import *
+
 class BaseController():
 
 	def __init__(self, router, payload):
@@ -26,6 +29,18 @@ class BaseController():
 		self.__router.dispatch(last_route, last_payload) 
 
 	'''
+		Takes the user to their splash page.
+	'''
+	def go_home(self):
+		account_type = self.__payload['type']
+		payload = {'id': self.get_payload()['id']}
+
+		if account_type == STUDENT_ACCOUNT_TYPE:
+			self.dispatch(STUDENT_ROUTE, payload)
+		elif account_type == INSTRUCTOR_ACCOUNT_TYPE:
+			self.dispatch(INSTRUCTOR_ROUTE, payload)
+
+	'''
 		Returns the payload provided
 		to the controller.
 
@@ -33,3 +48,21 @@ class BaseController():
 	'''
 	def get_payload(self):
 		return self.__payload
+
+	'''
+		Returns the route with which
+		the controller was instantiated.
+
+		@return {str}
+	'''
+	def get_route(self):
+		return self.__payload['__route']
+
+	'''
+		Returns the parts of the route
+		as a tuple.
+		
+		@return {tuple}
+	'''
+	def get_route_parts(self):
+		return tuple(self.__payload['__route'].split('/'))

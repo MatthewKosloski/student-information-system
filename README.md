@@ -133,3 +133,8 @@ The `type` column in the `section` table takes the following integers:
 
 * 1 (lecture)
 * 2 (online)
+
+The `sex` column takes the following integers:
+
+* 1 (male)
+* 2 (female)

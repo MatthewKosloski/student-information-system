@@ -5,4 +5,12 @@ from .student import StudentView
 from .profile import ProfileView
 from .password import PasswordView
 from .grades import GradesView
-from .schedule import ScheduleView
+from .sections import SectionsView
+from .term_selection import TermSelectionView
+from .search import SearchView
+from .name_selection import NameSelectionView
+from .register import RegisterView
+from .instructor import InstructorView
+from .input_grades import InputGradesView
+from .section_selection import SectionSelectionView
+from .roster import RosterView

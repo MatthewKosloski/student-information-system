@@ -1,12 +1,14 @@
 from .base import BaseModel
 from .instructor import Instructor
 from .course import Course
+from .term import Term
 from peewee import *
 
 class Section(BaseModel):
 	id = IntegerField()
 	instructor_id = ForeignKeyField(Instructor)
 	course_id = ForeignKeyField(Course)
+	term_id = ForeignKeyField(Term)
 	number = IntegerField()
 	capacity = IntegerField()
 	meet_day = IntegerField()

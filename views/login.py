@@ -15,7 +15,8 @@ class LoginView(BaseView):
 
 		while not self.__is_valid_login:
 
-			account = int(input('Account type (1 = Student, 2 = Instructor): '))
-			username = input('Username: ')
-			password = input('Password: ')
-			self.get_controller().login(account, username, password)
+			account = self.get_int_range('Account type (1 = Student, 2 = Instructor): ', (1, 2))
+			username = self.get_non_empty_string('Username: ', 'Please provide a username.')
+			password = self.get_non_empty_string('Password: ', 'Please provide a password.')
+
+			self.get_controller().on_credentials_selection(account, username, password)

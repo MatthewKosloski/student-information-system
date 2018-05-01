@@ -1,13 +1,9 @@
 from .base import BaseController
 from views import StudentView
 from models import Student
-from routes import (
-	STUDENT_PROFILE_ROUTE, 
-	CHANGE_PASSWORD_ROUTE, 
-	STUDENT_GRADES_ROUTE, 
-	STUDENT_SCHEDULE_ROUTE,
-	HOME_ROUTE
-)
+from common_queries import get_username_and_full_name
+from account_types import STUDENT_ACCOUNT_TYPE
+from routes import *
 
 class StudentController(BaseController):
 
@@ -16,32 +12,10 @@ class StudentController(BaseController):
 
 		self.__view = StudentView(self)
 
-		self.__view.render(self.get_username_and_full_name(payload))
-
-	'''
-		Get the username, firstname, and lastname
-		from the student whose ID is the one provided.
-
-		@param id {int} ID of the student
-		@return {dict} A dictionary containing the username
-		and full name of the user to be displayed in the
-		student view.
-	'''
-	def get_username_and_full_name(self, id):
 		try:
-			query = (Student
-				.select(Student.username, 
-					Student.first_name, 
-					Student.last_name)
-				.where(Student.id == id)
-				.get())
-
-			return {
-				'username': query.username,
-				'full_name': f'{query.first_name} {query.last_name}'
-			}
-		except DoesNotExist:
-			self.__view.print_message('Student does not exist.')
+			self.__view.render(get_username_and_full_name(Student, payload['id']))
+		except ValueError as e:
+			self.__view.print_message(e)
 
 	'''
 		Handle the user's choice and redirect
@@ -50,18 +24,25 @@ class StudentController(BaseController):
 		@param choice {int} Number corresponding to
 		the view in the ordered list menu.
 	'''
-	def on_choice_selection(self, choice):
-		student_id = self.get_payload()
+	def on_choice_selection(self, choice, meta):
+		student_id = self.get_payload()['id']
+
+		student_payload = {'type': STUDENT_ACCOUNT_TYPE, 'id': student_id}
+
 		if choice == 1: # View Profile
-			# specify type so we can reuse profile module
-			self.dispatch(STUDENT_PROFILE_ROUTE, {'type': 'student', 'id': student_id})
+			self.dispatch(STUDENT_PROFILE_ROUTE, student_payload)
 		elif choice == 2: # Change Password
-		# specify type so we can reuse password module
-			self.dispatch(CHANGE_PASSWORD_ROUTE, {'type': 'student', 'id': student_id})
-		elif choice == 3:
-			self.dispatch(STUDENT_GRADES_ROUTE, student_id)
-		elif choice == 4: # Logout
-			self.dispatch(STUDENT_SCHEDULE_ROUTE)
-		elif choice == 5:
-			self.dispatch('/')
+			self.dispatch(CHANGE_PASSWORD_ROUTE, student_payload)
+		elif choice == 3: # Student grades
+			self.dispatch(STUDENT_GRADES_SELECT_TERM_ROUTE, student_payload)
+		elif choice == 4: # Student schedule
+			self.dispatch(STUDENT_SCHEDULE_SELECT_TERM_ROUTE, student_payload)
+		elif choice == 5: # Search for Sections
+			self.dispatch(SEARCH_ROUTE, student_payload)
+		elif choice == 6: # Register for Sections
+			self.dispatch(STUDENT_REGISTER_ROUTE, student_payload)
+		elif choice == 7: # Logout
+			self.dispatch(HOME_ROUTE)
+		else:
+			self.dispatch(HOME_ROUTE)
 

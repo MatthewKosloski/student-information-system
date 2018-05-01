@@ -95,6 +95,7 @@ class Router():
 			controllers_module = importlib.import_module('controllers')
 			controller_class = getattr(controllers_module, controller)
 
+			payload['__route'] = route
 			self.__log.append({'route': route, 'payload': payload})
 			self.__active_controller = controller_class(current_route['router'], payload)
 			
