@@ -111,6 +111,24 @@ class BaseView():
 		return val
 
 	'''
+		Asks the user for an integer.
+
+		@param input_str {str} Text to be prompted to user
+		@param err_str {str} Text to display when not integer
+		@return val {int}
+	'''
+	def get_int(self, input_str, err_str):
+		while True:
+			try:
+				val = int(input(input_str))
+			except ValueError:
+				print(err_str)
+				continue
+			else:
+				break
+		return val
+
+	'''
 		Keeps prompting the user to
 		enter an integer between a given range.
 
@@ -137,7 +155,7 @@ class BaseView():
 		@param input_str {str} Text to be prompted to user
 		@param range {tuple} Tuple of two floats, where the
 		first is the min and second is the max e.g., (0.0, 100.0)
-		@return val {int} Int received from user
+		@return val {float} Float received from user
 	'''
 	def get_float_range(self, input_str, range):
 		# init val to the integer less than the min

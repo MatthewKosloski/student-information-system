@@ -12,9 +12,9 @@ class InputGradesView(BaseView):
 		
 		while another.lower() == 'y':
 
-			section_id = self.get_non_empty_string('Section ID: ', 
+			section_id = self.get_int('Section ID: ', 
 				'Please provide the ID of the section to which the student belongs.')
-			student_id = self.get_non_empty_string('Student ID: ',
+			student_id = self.get_int('Student ID: ',
 				'Please provide the ID of the student to which the grade will be given.')
 			percent_grade = self.get_float_range('Percent grade: ', (0.0, 100.0))
 
