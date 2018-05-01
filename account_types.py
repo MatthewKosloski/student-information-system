@@ -1,0 +1,2 @@
+STUDENT_ACCOUNT_TYPE = 'student'
+INSTRUCTOR_ACCOUNT_TYPE = 'instructor'

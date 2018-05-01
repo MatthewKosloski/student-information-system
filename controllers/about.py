@@ -3,8 +3,8 @@ from .base import BaseController
 
 class AboutController(BaseController):
 
-	def __init__(self, params, payload):
-		super().__init__(params, payload)
+	def __init__(self, router, payload):
+		super().__init__(router, payload)
 
 		self.__view = AboutView(self)
 		self.__view.render(payload)
@@ -16,8 +16,6 @@ class AboutController(BaseController):
 		@param choice {int} Number corresponding to
 		the view in the ordered list menu.
 	'''
-	def on_choice_selection(self, choice):
+	def on_choice_selection(self, choice, meta):
 		if choice == 1:
-			self.dispatch('/')
-
-
+			self.go_back()

@@ -1,12 +1,17 @@
 from .base import BaseController
 from views import PasswordView
+<<<<<<< HEAD
 from models import Registrar
 from models import Student
+=======
+from models import Student, Instructor
+from account_types import *
+>>>>>>> 737d575a946879cf925508314e57c938849476ed
 
 class PasswordController(BaseController):
 
-	def __init__(self, params, payload):
-		super().__init__(params, payload)
+	def __init__(self, router, payload):
+		super().__init__(router, payload)
 
 		self.__view = PasswordView(self)
 		self.__view.render(payload)
@@ -20,10 +25,16 @@ class PasswordController(BaseController):
 	'''
 	def get_model(self):
 		account_type = self.get_payload()['type']
-		if account_type == 'student':
+		if account_type == STUDENT_ACCOUNT_TYPE:
 			return Student
+<<<<<<< HEAD
 		elif account_type == 'registrar':
 			return registrar
+=======
+		elif account_type == INSTRUCTOR_ACCOUNT_TYPE:
+			return Instructor
+
+>>>>>>> 737d575a946879cf925508314e57c938849476ed
 	'''
 		Gets the user's current password from the
 		database. Query is based on the user's id,
@@ -32,7 +43,6 @@ class PasswordController(BaseController):
 		@return {str} User's current password
 	'''
 	def get_password(self):
-		account_type = self.get_payload()['type']
 		account_id = self.get_payload()['id']
 		model = self.get_model()
 
@@ -54,7 +64,6 @@ class PasswordController(BaseController):
 		@return updated_rows {int} Amount of rows updated
 	'''
 	def set_password(self, password):
-		account_type = self.get_payload()['type']
 		account_id = self.get_payload()['id']
 		model = self.get_model()
 
@@ -65,6 +74,7 @@ class PasswordController(BaseController):
 		return updated_rows
 
 	'''
+<<<<<<< HEAD
 		Determines which view to display when the 
 		user wants to go back to their home view. 
 		This is based on the "type" payload value.
@@ -80,6 +90,8 @@ class PasswordController(BaseController):
 			self.dispatch('/')
 
 	'''
+=======
+>>>>>>> 737d575a946879cf925508314e57c938849476ed
 		Take input from the view and try to update
 		the user's password. Checks if the user entered
 		the new password correct two times. Checks if
@@ -100,7 +112,7 @@ class PasswordController(BaseController):
 					self.__view.print_message('Password has been changed.')
 				else:
 					self.__view.print_message('Password has NOT been changed.')
-				self.__password_has_changed = True
+				self.__view.set_password_status(True)
 				self.go_back()
 			else:
 				self.__view.print_message('Old password does not ' + 

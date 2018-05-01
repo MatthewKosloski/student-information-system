@@ -1,10 +1,11 @@
 from views import MainView
+from routes import LOGIN_ROUTE, ABOUT_ROUTE
 from .base import BaseController
 
 class MainController(BaseController):
 
-	def __init__(self, params, payload):
-		super().__init__(params, payload)
+	def __init__(self, router, payload):
+		super().__init__(router, payload)
 
 		self.__view = MainView(self)
 		self.__view.render(payload)
@@ -16,8 +17,8 @@ class MainController(BaseController):
 		@param choice {int} Number corresponding to
 		the view in the ordered list menu.
 	'''
-	def on_choice_selection(self, choice):
+	def on_choice_selection(self, choice, meta):
 		if choice == 1:
-			self.dispatch('/login')
+			self.dispatch(LOGIN_ROUTE)
 		elif choice == 2:
-			self.dispatch('/about')
+			self.dispatch(ABOUT_ROUTE)

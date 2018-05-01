@@ -28,23 +28,27 @@ class Router():
 
 	def __init__(self):
 		self.__routes = {}
+		self.__active_controller = None
+		self.__log = []
 
 	'''
 		Create a new route
+
+		@param route {str}
+		@param controller {str}
 	'''
-	def add(self, route, params = {}):
+	def add(self, route, controller):
 		if not route in self.__routes:
 			
-			'''
-				Add the router instance to the params
-				so the controller can use it
-			'''
-			params['router'] = self
-
-			self.__routes[route] = params
+			self.__routes[route] = {
+				'controller': controller,
+				'router': self
+			}
 
 	'''
 		Get all the routes
+
+		@return {dict}
 	'''
 	def get_routes(self):
 		return self.__routes
@@ -57,20 +61,43 @@ class Router():
 			del self.__routes[route]
 
 	'''
-		Call the action on the controller
-		of the route.
+		Return dispatch history.
+
+		@return {list}
+	'''
+	def get_log(self):
+		return self.__log
+
+	'''
+		Return the last dispatched item. It
+		is -2 because -1 is the current item.
+
+		@return {dict}
+	'''
+	def get_last_log_item(self):
+		return self.__log[-2]
+
+	'''
+		Instantiate a new instance of
+		the controller associated with
+		a route.
+
+		@param route {str}
+		@param payload {dict} Data to send to
+		the controller.
 	'''
 	def dispatch(self, route, payload = {}):
 		if route in self.__routes:
 			current_route = self.__routes[route]
-			controller = current_route['controller'] # 'FooController'
-			# action = current_route['action'] # 'index_action'
+			controller = current_route['controller']
 
-			# from controllers import FooController
+			# Dynamically import the controller from the controller module
 			controllers_module = importlib.import_module('controllers')
 			controller_class = getattr(controllers_module, controller)
-			controller_obj = controller_class(current_route, payload) # foo_controller = FooController(params, payload)
-			# controller_action = getattr(controller_obj, action) # foo_controller.index_action()
 
-
+			payload['__route'] = route
+			self.__log.append({'route': route, 'payload': payload})
+			self.__active_controller = controller_class(current_route['router'], payload)
 			
+
+
