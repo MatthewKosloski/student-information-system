@@ -32,10 +32,12 @@ class SectionsController(BaseController):
 					'view_title': f'Sections for the {term} semester.'
 				})
 			elif 'course_name' in payload:
+				course_name = self.get_payload()['course_name']
 				sections = self.process_section_query(self.get_sections_by_course_name())
 				self.__view.render({
 					'sections': sections,
-					'view_title': f'Sections for course {self.get_payload()["course_name"]}'
+					'view_title': f'Sections for course {course_name}',
+					'course_name': course_name
 				})
 
 	'''

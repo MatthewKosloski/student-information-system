@@ -45,7 +45,11 @@ class SectionsView(BaseView):
 	def render(self, payload):
 		self.print_title(payload['view_title'])
 
-		print(self.get_sections_table(payload['sections']))
+		if len(payload['sections']) != 0:
+			print(self.get_sections_table(payload['sections']))
+		else:
+			print(f'There are no sections for {payload["course_name"]}.')
+
 		print()
 		print(self.get_choices_list())
 		print()
