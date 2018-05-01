@@ -62,6 +62,8 @@ class SectionSelectionController(BaseController):
 	'''
 	def on_choice_selection(self, choice, meta):
 		if choice == 1:
+			self.go_home()
+		elif choice == 2:
 			self.go_back()
 		else:
 			payload = self.get_payload()

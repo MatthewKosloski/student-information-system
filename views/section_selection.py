@@ -14,8 +14,8 @@ class SectionSelectionView(BaseView):
 			for each choice. The meta values are sent to
 			the controller along with the choice integer.
 		'''
-		choices = ['Back'] + payload['sections']
-		choices_meta = [''] + payload['section_ids']
+		choices = ['Home', 'Back'] + payload['sections']
+		choices_meta = ['', ''] + payload['section_ids']
 		self.set_choices(choices, choices_meta)
 
 		print(self.get_choices_list())
