@@ -32,13 +32,13 @@ class RegistrarController(BaseController):
 	'''
 	def on_choice_selection(self, choice):
 		registrar_id = self.get_payload()
-		if choice == 1: # View profile
+		if choice == 1: # Change Password
 			# specify type so we can reuse profile module
-			self.dispatch(REGISTRAR_PROFILE_ROUTE, registrar_payload)
-		elif choice == 2: # change password
-			#pecify type so we can reuse password module
 			self.dispatch(CHANGE_PASSWORD_ROUTE, registrar_payload)
-		elif choice == 3: # search for sections
+		elif choice == 2: # Enroll Student
+			#pecify type so we can reuse password module
+			self.dispatch()
+		elif choice == 3: # Drop Student
 			self.dispatch(SEARCH_ROUTE, registrar_payload)
 		elif choice == 4: # Logout
 			self.dispatch('HOME_ROUTE')
