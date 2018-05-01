@@ -15,3 +15,4 @@ from .input_grades import InputGradesController
 from .section_selection import SectionSelectionController
 from .roster import RosterController
 from .registrar import RegistrarController
+from .student_id_selection import StudentIDSelectionController

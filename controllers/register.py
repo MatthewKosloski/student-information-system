@@ -1,7 +1,9 @@
 from .base import BaseController
 from views import RegisterView
-from models import Registration, Section, Course
+from models import Registration, Student
+from common_queries import get_section_name, get_username_and_full_name
 from peewee import IntegrityError
+from routes import *
 
 class RegisterController(BaseController):
 
@@ -9,44 +11,41 @@ class RegisterController(BaseController):
 		super().__init__(router, payload)
 
 		self.__view = RegisterView(self)
-		self.__view.render(payload)
 
-	'''
-		Gets the section number and course name
-		of a section by id.
+		route = self.get_route()
 
-		@param section_id {int}
-		@return {list}
-	'''
-	def get_name_number(self, section_id):
-		try:
-			query = (Section
-				.select(Section.number, Course.name)
-				.join(Course, on=(Section.course_id == Course.id))
-				.where(Section.id == section_id)
-				.dicts())
+		if route == STUDENT_REGISTER_ROUTE:
+			self.__student_id = self.get_payload()['id']
+		elif route == REGISTRAR_REGISTER_STUDENT_ROUTE:
+			self.__student_id = self.get_payload()['student_id']
 
-			return list(query)[0]
-		except IndexError:
-			return False
+		self.__student_name = get_username_and_full_name(
+			Student, self.__student_id)['full_name']
+
+		self.__view.render({
+			'view_title': f'Register {self.__student_name} for Sections'
+		})
 
 	'''
 		Received the section id inputted from user
 		along with the student's id.
 
 		@param section_id {str} Primary key of section
-		@param student_id {str} Primary key of student
 	'''
-	def on_id_selection(self, section_id, student_id):
-		
+	def on_id_selection(self, section_id):
+
 		try:
-			reg = Registration(section_id=section_id, student_id=student_id)
+			reg = Registration(
+				section_id=section_id, 
+				student_id=self.__student_id)
 
 			if reg.save():
-				name_number = self.get_name_number(section_id)
-				if name_number:
-					self.__view.print_message('Successfully registered for section ' + 
-						f'{name_number["number"]} of {name_number["name"]}.')
+
+				section_name = get_section_name(section_id)
+	
+				if section_name:
+					self.__view.print_message(
+						f'Successfully registered {self.__student_name} for {section_name}.')
 				else:
 					self.__view.print_message('Successfully registered for section.')
 			else:

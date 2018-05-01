@@ -34,10 +34,11 @@ def main():
 
 	# Registrar routes
 	router.add(REGISTRAR_ROUTE, 'RegistrarController')
+	router.add(REGISTRAR_REGISTER_STUDENT_SELECT_ID_ROUTE, 'StudentIDSelectionController')
+	router.add(REGISTRAR_REGISTER_STUDENT_ROUTE, 'RegisterController')
 
 	# Call '__init__' on the MainController
 	router.dispatch(HOME_ROUTE)
-
 
 if __name__ == '__main__':
 	main()

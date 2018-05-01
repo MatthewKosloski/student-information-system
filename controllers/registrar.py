@@ -31,7 +31,9 @@ class RegistrarController(BaseController):
 
 		if choice == 1: # Change Password
 			self.dispatch(CHANGE_PASSWORD_ROUTE, registrar_payload)
-		elif choice == 2: # Logout
+		elif choice == 2: # Register Student for Section
+			self.dispatch(REGISTRAR_REGISTER_STUDENT_SELECT_ID_ROUTE, registrar_payload)
+		elif choice == 3: # Logout
 			self.dispatch(HOME_ROUTE)
 
 
