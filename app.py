@@ -18,7 +18,7 @@ def main():
 
 	router.add('/registrar', {'controller': 'RegistrarController'})
 	router.add('/registrar/profile', {'controller': 'ProfileController'})
-	router.add('/registrar/courses', {'controller': 'CoursesController'})
+	router.add('/registrar/loginii', {'controller': 'LoginiiController'})
 
 	# Call '__init__' on the MainController
 	router.dispatch('/')

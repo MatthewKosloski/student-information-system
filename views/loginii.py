@@ -1,7 +1,7 @@
 from .base import BaseView
 import getpass
 
-class LoginView(BaseView):
+class LoginiiView(BaseView):
 
 	def __init__(self, controller):
 		super().__init__(controller)
@@ -13,12 +13,11 @@ class LoginView(BaseView):
 	def render(self, payload):
 		print()
 		print()
-		print('Login')
+		print('Choose student to view')
 		print()
 
 		while not self.__is_valid_login:
 
-			account = int(input('Account type (1 = Student, 2 = Instructor, 3 = Registrar): '))
+			account = 1
 			username = input('Username: ')
-			#password = input('Password: ')
-			self.get_controller().login(account, username)
+			self.get_controller().login(account, username,)
