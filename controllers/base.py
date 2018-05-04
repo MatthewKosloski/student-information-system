@@ -13,6 +13,7 @@ class BaseController():
 
 		@param route {str}
 		@param payload {dict}
+		@return void
 	'''
 	def dispatch(self, route, payload = {}):
 		return self.__router.dispatch(route, payload)
