@@ -1,5 +1,6 @@
 from .base import BaseController
 from utils import get_letter_grade, get_percent_grade
+from common_queries import get_term_name
 from views import GradesView
 from models import *
 
@@ -9,38 +10,11 @@ class GradesController(BaseController):
 		super().__init__(router, payload)
 
 		self.__view = GradesView(self)
+		self.__term_name = get_term_name(payload['term_id'])
 		self.__view.render({
 			'grades': self.process_get_student_grades(self.get_student_grades()),
-			'view_title': f'{self.get_term_name()} Semester Grades'
+			'view_title': f'{self.__term_name} Semester Grades'
 		})
-
-	'''
-		Queries the database for the title
-		column in terms with a specific ID.
-
-		@return {str}
-	'''
-	def get_term_name(self):
-		term_id = self.get_payload()['term_id']
-		query = (Term
-			.select(Term.title)
-			.where(Term.id == term_id)
-			.dicts())
-
-		return self.process_get_term_name(query)
-
-	'''
-		Processes the get_term_name query by
-		returning the first result.
-
-		@param query
-		@return {str}
-	'''
-	def process_get_term_name(self, query):
-		term_name = []
-		for item in query:
-			term_name.append(item['title'])
-		return term_name[0]
 
 	'''
 		Returns the student's letter grade and percent grade
