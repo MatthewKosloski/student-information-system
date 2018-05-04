@@ -10,10 +10,13 @@ class GradesController(BaseController):
 		super().__init__(router, payload)
 
 		self.__view = GradesView(self)
-		self.__term_name = get_term_name(payload['term_id'])
+		
+		term_name = get_term_name(payload['term_id'])
+		grades = self.process_get_student_grades(self.get_student_grades())
+
 		self.__view.render({
-			'grades': self.process_get_student_grades(self.get_student_grades()),
-			'view_title': f'{self.__term_name} Semester Grades'
+			'grades': grades,
+			'view_title': f'{term_name} Semester Grades'
 		})
 
 	'''
@@ -66,6 +69,8 @@ class GradesController(BaseController):
 		
 		@param choice {int} Number corresponding to
 		the view in the ordered list menu.
+		@param meta {Any} The meta value associated
+		with the choice.
 	'''
 	def on_choice_selection(self, choice, meta):
 		student_id = self.get_payload()
