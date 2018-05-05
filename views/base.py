@@ -10,7 +10,7 @@ class BaseView():
 	'''
 		Get the controller for this view.
 
-		@return {cls}
+		@return {BaseController}
 	'''
 	def get_controller(self):
 		return self.__controller
@@ -27,6 +27,7 @@ class BaseView():
 		Set the choices.
 
 		@param choices {list}
+		@param choices_meta {list}
 	'''
 	def set_choices(self, choices, choices_meta = []):
 		self.__choices += choices
@@ -172,8 +173,6 @@ class BaseView():
 		Asks the user for a valid integer
 		that corresponds to the index of an
 		item in self.__choices.
-
-		@param on_choice {func}
 	'''
 	def choice_prompt(self):
 		choice = -1

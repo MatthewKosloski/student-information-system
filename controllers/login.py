@@ -78,9 +78,9 @@ class LoginController(BaseController):
 		Returns the id, username, and password
 		column values in the row with the username.
 
-		@param model {Model} Type of Model to query
+		@param model {BaseModel} Type of Model to query
 		@param username {str} Username of the account
-		@return {Model}
+		@return {BaseModel}
 	'''
 	def get_account(self, model, username):
 		try:

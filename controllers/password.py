@@ -16,7 +16,7 @@ class PasswordController(BaseController):
 		based on the "type" key found in
 		the payload.
 
-		@return {Model}
+		@return {BaseModel}
 	'''
 	def get_model(self):
 		account_type = self.get_payload()['type']

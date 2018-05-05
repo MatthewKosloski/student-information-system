@@ -23,6 +23,8 @@ class RegistrarController(BaseController):
 		
 		@param choice {int} Number corresponding to
 		the view in the ordered list menu.
+		@param meta {Any} The meta value associated
+		with the choice.
 	'''
 	def on_choice_selection(self, choice, meta):
 		registrar_id = self.get_payload()['id']

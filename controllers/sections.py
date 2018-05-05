@@ -111,6 +111,8 @@ class SectionsController(BaseController):
 		from a term (e.g., Fall 2018). This
 		is used for searching for sections
 		by term.
+
+		@return {list}
 	'''
 	def get_sections_by_term_id(self):
 		term_id = self.get_payload()['term_id']
@@ -141,7 +143,7 @@ class SectionsController(BaseController):
 		before sending it off to the
 		appropriate view.
 
-		@param sections {dict}
+		@param sections {list}
 		@return processed_schedule {list}
 	'''
 	def process_section_query(self, sections):
@@ -170,6 +172,8 @@ class SectionsController(BaseController):
 		
 		@param choice {int} Number corresponding to
 		the view in the ordered list menu.
+		@param meta {Any} The meta value associated
+		with the choice.
 	'''
 	def on_choice_selection(self, choice, meta):
 		if choice == 1: # Home

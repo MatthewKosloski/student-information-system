@@ -10,7 +10,8 @@ class ProfileController(BaseController):
 		super().__init__(router, payload)
 
 		self.__view = ProfileView(self)
-		self.__view.render(self.process_get_student_profile(self.get_student_profile()))
+		self.__view.render(
+			self.process_get_student_profile(self.get_student_profile()))
 
 	'''
 		Queries the database for the Student
@@ -74,6 +75,8 @@ class ProfileController(BaseController):
 		
 		@param choice {int} Number corresponding to
 		the view in the ordered list menu.
+		@param meta {Any} The meta value associated
+		with the choice.
 	'''
 	def on_choice_selection(self, choice, meta):
 		if choice == 1:

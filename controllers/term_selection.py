@@ -47,7 +47,7 @@ class TermSelectionController(BaseController):
 		of all the student's registration terms 
 		(e.g., 'Fall 2018').
 
-		@return {dict}
+		@return {list}
 	'''
 	def get_student_terms(self):
 		student_id = self.get_payload()['id']
@@ -65,7 +65,7 @@ class TermSelectionController(BaseController):
 		Queries the database for the ID and title
 		of all the instructor's terms (e.g., 'Fall 2018').
 
-		@return {dict}
+		@return {list}
 	'''
 	def get_instructor_terms(self):
 		instructor_id = self.get_payload()['id']
@@ -82,7 +82,7 @@ class TermSelectionController(BaseController):
 		Queries the database for all terms,
 		returning title and ID columns.
 
-		@return {dict}
+		@return {list}
 	'''
 	def get_all_terms(self):
 		query = (Term
@@ -95,7 +95,7 @@ class TermSelectionController(BaseController):
 		Separates the registration term titles and
 		IDs.
 
-		@param query {unknown}
+		@param query {dict}
 		@return payload {dict}
 	'''
 	def process_terms(self, query):
@@ -112,6 +112,8 @@ class TermSelectionController(BaseController):
 		
 		@param choice {int} Number corresponding to
 		the view in the ordered list menu.
+		@param meta {Any} The meta value associated
+		with the choice.
 	'''
 	def on_choice_selection(self, choice, meta):
 		if choice == 1: # Home

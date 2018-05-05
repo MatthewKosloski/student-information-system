@@ -30,7 +30,7 @@ class StudentIDSelectionController(BaseController):
 		and navigates the user to the 
 		appropriate view.
 		
-		@param student_id {str}
+		@param student_id {int}
 	'''
 	def on_student_id_selection(self, student_id):
 		if self.is_valid_student_id(int(student_id)):
