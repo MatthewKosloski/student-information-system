@@ -14,9 +14,9 @@ class SectionsView(BaseView):
 	'''
 		Displays a table of sections.
 
-		@param schedule {dict}
+		@param sections {list}
 	'''
-	def get_sections_table(self, schedule):
+	def get_sections_table(self, sections):
 		table = Table([
 			'COURSE', 
 			'TERM',
@@ -28,7 +28,7 @@ class SectionsView(BaseView):
 			'TYPE'
 		])
 
-		for item in schedule:
+		for item in sections:
 			table.add_row([
 				item['course'], 
 				item['term'],

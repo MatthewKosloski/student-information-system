@@ -10,8 +10,15 @@ class GradesView(BaseView):
 			'Back'
 		])
 
+	'''
+		Creates a table listing the student's
+		grades for each section.
+
+		@param grades {list}
+		@return Table
+	'''
 	def get_grades_table(self, grades):
-		table = Table(['Course', 'Grade', 'Percent'])
+		table = Table(['COURSE', 'GRADE', 'PERCENT'])
 
 		for item in grades:
 			table.add_row([

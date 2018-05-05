@@ -19,7 +19,7 @@ class Table:
 		Takes a row and returns a formatted string of it.
 
 		@param row {tuple}
-		@return 
+		@return str
 	'''
 	def row_str(self, row):
 		output = ''

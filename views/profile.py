@@ -17,17 +17,17 @@ class ProfileView(BaseView):
 		@payload {dict}
 		@return {Table}
 	'''
-	def get_profile_table(self, payload):
+	def get_profile_table(self, profile):
 		table = Table(['FULL NAME', 'STUDENT ID', 'SEX'])
-		table.add_row([payload['full_name'], payload['id'], payload['sex']])
+		table.add_row([profile['full_name'], profile['id'], profile['sex']])
 		table.add_row(['', '', ''])
 		table.add_row(['ADDRESS', 'DATE OF BIRTH', 'AGE'])
-		table.add_row([payload['address_street'], payload['date_of_birth'], payload['age']])
-		table.add_row([f'{payload["address_city"]}, {payload["address_state"]}', '', ''])
-		table.add_row([payload['address_zip_code'], '', ''])
+		table.add_row([profile['address_street'], profile['date_of_birth'], profile['age']])
+		table.add_row([f'{profile["address_city"]}, {profile["address_state"]}', '', ''])
+		table.add_row([profile['address_zip_code'], '', ''])
 		table.add_row(['', '', ''])
 		table.add_row(['PHONE NUMBER', 'EMAIL ADDRESS', ''])
-		table.add_row([payload['phone_number'], payload['email'], ''])
+		table.add_row([profile['phone_number'], profile['email'], ''])
 			
 		return table
 		

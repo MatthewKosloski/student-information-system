@@ -14,10 +14,10 @@ class RosterView(BaseView):
 		Creates a table from the data
 		in the payload.
 
-		@param payload {dict}
+		@param students {dict}
 		@return table {Table}
 	'''
-	def get_roster_table(self, payload):
+	def get_roster_table(self, students):
 		table = Table([
 			'LAST NAME', 
 			'FIRST NAME', 
@@ -25,7 +25,7 @@ class RosterView(BaseView):
 			'LETTER GRADE', 
 			'PERCENT GRADE'])
 
-		for student in payload:
+		for student in students:
 
 			table.add_row([
 				student['last_name'], 

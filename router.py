@@ -55,6 +55,8 @@ class Router():
 
 	'''
 		Remove a route
+
+		@param route {str}
 	'''
 	def remove(self, route):
 		if route in self.__routes:
